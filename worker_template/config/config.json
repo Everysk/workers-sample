@@ -1,0 +1,31 @@
+{
+  "id": "",
+  "name": "Worker Sample",
+  "description": "",
+  "category": "miscellaneous",
+  "visible": true,
+  "version": "v1",
+  "icon": "delete",
+  "type": "BASIC",
+  "script_runtime": "python",
+  "script_entry_point": "main",
+  "tags": [],
+  "sort_index": 0,
+  "default_output": "OUTPUT_KEY",
+  "ports": [
+    {
+      "value": "in",
+      "label": "IN",
+      "type": "input",
+      "is_visible": true
+    },
+    {
+      "value": "out",
+      "label": "OUT",
+      "type": "output",
+      "is_visible": true
+    }
+  ],
+  "created": null,
+  "updated": null
+}

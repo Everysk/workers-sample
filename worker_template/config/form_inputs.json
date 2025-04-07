@@ -1,0 +1,133 @@
+[
+  {
+    "id": "_FORM_TAB_ID_",
+    "name": "_FORM_TAB_NAME_",
+    "type": "assembler",
+    "fields": [
+      {
+        "id": "_ASSEMBLER_MULTIPLE_FIELD_ID_",
+        "name": "_ASSEMBLER_MULTIPLE_FIELD_NAME_",
+        "type": "assembler",
+        "addLabel": "_ADD_FIELD_LABEL_",
+        "min": 1,
+        "max": 10,
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 12,
+        "multiple": true,
+        "mandatory": true,
+        "displayName": true,
+        "withoutMessages": false,
+        "fields": [
+          {
+            "id": "_STRING_FIELD_ID_",
+            "name": "_STRING_FIELD_NAME_",
+            "placeholder": "_STRING_FIELD_PLACEHOLDER_",
+            "tipover": "",
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "gridSizeMd": 12,
+            "mandatory": true,
+            "displayName": true,
+            "withoutMessages": false,
+            "variantOptions": [
+              {
+                "label": "Template Text",
+                "value": "metaString"
+              },
+              {
+                "label": "Upstream Data",
+                "value": "previousWorkers"
+              }
+            ],
+            "defaultVariant": "metaString",
+            "variants": {
+              "metaString": {
+                "type": "metaString",
+                "helperText": "Set the _STRING_FIELD_NAME_ using template text.",
+                "maxLength": 250,
+                "defaultValues": {
+                  "select": {
+                    "label": "",
+                    "value": ""
+                  }
+                },
+                "filterType": [
+                  "number",
+                  "string",
+                  "date"
+                ]
+              },
+              "previousWorkers": {
+                "type": "nestedAttributes",
+                "helperText": "Select the _STRING_FIELD_NAME_ from a previous worker.",
+                "defaultValues": {
+                  "select": {
+                    "label": "",
+                    "value": ""
+                  }
+                },
+                "options": [],
+                "filterType": [
+                  "string"
+                ]
+              }
+            }
+          },
+          {
+            "id": "_NUMBER_FIELD_ID_",
+            "name": "_NUMBER_FIELD_NAME_",
+            "placeholder": "_NUMBER_FIELD_PLACEHOLDER_",
+            "tipover": "",
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "gridSizeMd": 12,
+            "mandatory": true,
+            "displayName": true,
+            "withoutMessages": false,
+            "variantOptions": [
+              {
+                "label": "Fixed Number",
+                "value": "number"
+              },
+              {
+                "label": "Upstream Data",
+                "value": "previousWorkers"
+              }
+            ],
+            "defaultVariant": "number",
+            "variants": {
+              "number": {
+                "type": "number",
+                "helperText": "Set the _NUMBER_FIELD_NAME_ using template text.",
+                "defaultValues": {
+                  "value": ""
+                }
+              },
+              "previousWorkers": {
+                "type": "nestedAttributes",
+                "helperText": "Select the _NUMBER_FIELD_NAME_ from a previous worker.",
+                "defaultValues": {
+                  "select": {
+                    "label": "",
+                    "value": ""
+                  }
+                },
+                "options": [],
+                "filterType": [
+                  "number"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.224.2/containers/python-3
+{
+	"name": "Workers Sample",
+	"build": {
+		"dockerfile": "${localWorkspaceFolder}/.devcontainer/Dockerfile",
+		"context": "${localWorkspaceFolder}"
+	},
+    "customizations": {
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+			 	"ms-python.python"
+			],
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python3",
+				// https://github.com/microsoft/vscode/issues/207813#issuecomment-2020656014
+				"extensions.verifySignature": false
+			}
+		}
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/var/app,type=bind,consistency=cached",
+	"workspaceFolder": "/var/app",
+
+	// An array of Docker CLI arguments that should be used when running the container. Defaults to [].
+	// --rm: will delete the container after exit.
+	"runArgs": [
+		"--rm"
+	]
+}

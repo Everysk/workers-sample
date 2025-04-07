@@ -1,0 +1,35 @@
+{
+  "id": "",
+  "name": "Hello World",
+  "container_config": {
+    "os_packages": []
+  },
+  "description": "",
+  "category": "Sample",
+  "run_locally": false,
+  "visible": true,
+  "version": "v1",
+  "icon": "data",
+  "type": "BASIC",
+  "script_runtime": "python",
+  "script_entry_point": "main",
+  "tags": [],
+  "sort_index": 1,
+  "default_output": "SINGLE",
+  "ports": [
+    {
+      "value": "in",
+      "label": "IN",
+      "type": "input",
+      "is_visible": true
+    },
+    {
+      "value": "out",
+      "label": "OUT",
+      "type": "output",
+      "is_visible": true
+    }
+  ],
+  "created": 1743080219,
+  "updated": 1743080219
+}

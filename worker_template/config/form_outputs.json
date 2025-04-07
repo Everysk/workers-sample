@@ -1,0 +1,14 @@
+{
+  "OUTPUT_KEY": [
+    {
+      "value": "object",
+      "label": "Object",
+      "type": "object",
+      "nested_outputs": [
+        { "value": "key_one", "label": "Key One", "type": "string" },
+        { "value": "key_two", "label": "Key Two", "type": "number" },
+        { "value": "key_three", "label": "Key Three", "type": "list" }
+      ]
+    }
+  ]
+}

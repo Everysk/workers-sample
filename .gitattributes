@@ -1,0 +1,6 @@
+# To work with multiple operating systems
+# https://git-scm.com/docs/gitattributes#_end_of_line_conversion
+# https://github.com/microsoft/vscode-remote-try-python/blob/main/.gitattributes
+* text=auto eol=lf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf

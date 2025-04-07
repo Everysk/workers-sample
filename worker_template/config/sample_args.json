@@ -1,0 +1,12 @@
+{
+    "sample_1": {
+        "workspace": "main",
+        "worker_id": "",
+        "worker_type": "",
+        "script_inputs": {},
+        "inputs_info": {},
+        "workflow_execution_id": "",
+        "workflow_id": "",
+        "parallel_info": {}
+      }
+}

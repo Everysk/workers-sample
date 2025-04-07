@@ -1,0 +1,11 @@
+{
+    "SINGLE": [
+        {
+            "label": "Phrase",
+            "value": "phrase",
+            "type": "string",
+            "list_item_type": "",
+            "nested_outputs": []
+        }
+    ]
+}

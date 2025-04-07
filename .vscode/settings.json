@@ -1,0 +1,78 @@
+{
+    "[javascript]": {
+      "editor.formatOnSave": true
+    },
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.autopep8",
+      "editor.formatOnSave": true
+    },
+    "autoDocstring.startOnNewLine": true,
+    "autoSnippet.snippets": [
+      {
+        "pattern": "**/*.py",
+        "snippet": "Everysk-Template"
+      }
+    ],
+    "autopep8.args": [
+      "--max-line-length",
+      "300",
+      "--experimental",
+      "--ignore",
+      "E501,E265,E26,E266,E722,E124,E127,E128,E129,W503,W504,E302,E305,E402"
+    ],
+    "coverage-gutters.showGutterCoverage": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
+    "editor.formatOnType": false,
+    // To be used for autocomplete the settings on everysk-lib
+    "emeraldwalk.runonsave": {
+      "commands": [
+        {
+          "cmd": "echo 'Generating config.pyi' && /usr/bin/env python3 -c 'from everysk.core.config import settings'",
+          "match": "settings.py"
+        }
+      ]
+    },
+    "files.eol": "\n",
+    "files.exclude": {
+      "**/.DS_Store": true,
+      "**/.git": true,
+      "**/.hg": true,
+      "**/.svn": true,
+      "**/CVS": true,
+      "**/Thumbs.db": true,
+      "**/__pycache__": true
+    },
+    "files.associations": {
+      "*.json": "jsonc"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "pylint.args": [
+      "--disable=missing-module-docstring, missing-class-docstring, missing-function-docstring, unnecessary-pass, line-too-long, too-few-public-methods, too-many-arguments, too-many-instance-attributes",
+      "--allow-wildcard-with-all=True",
+      "--init-hook=import config_setup;",
+      "--good-names=x,y,z,w,i,j,k,df,e,id,on,f,et,ei,tb,ts,ins,eq,t0,t1,p,d,wn,pv,s,te,lb,ub,bs,v,a,b,c,dc,h",
+      "--include-naming-hint=y",
+      "--generated-members=from_dict"
+    ],
+    "python.analysis.autoImportCompletions": false,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.extraPaths": [
+      "/usr/local/lib/python3.11/site-package",
+      "./libs/webapp2-3.0.0b1",
+      "./libs/webob-1.6.1",
+      "./libs/"
+    ],
+  
+    "python.analysis.ignore": [
+  
+    ],
+    "python.testing.pytestArgs": [
+      "tests"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false
+  }
+  

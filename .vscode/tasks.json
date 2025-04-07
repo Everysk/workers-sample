@@ -1,0 +1,85 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Everysk - Create Folder Structure",
+            "type": "shell",
+            "command": "python",
+            "args": ["${workspaceFolder}/scripts/create.py", "create", "${input:folderName}" ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Everysk - DEBUG Worker",
+            "type": "shell",
+            "command": "python",
+            "args": ["${workspaceFolder}/run.py", "debug", "${input:folderName}" ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Everysk - TESTS",
+            "type": "shell",
+            "command": "python",
+            "args": ["${workspaceFolder}/run.py", "tests", "${input:folderName}" ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Everysk - DELETE Worker",
+            "type": "shell",
+            "command": "python",
+            "args": ["${workspaceFolder}/run.py", "delete", "${input:folderName}" ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Everysk - DEPLOY Worker",
+            "type": "shell",
+            "command": "python",
+            "args": [ "${workspaceFolder}/run.py", "deploy", "${input:folderName}" ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Everysk - COVERAGE",
+            "type": "shell",
+            "command": "python",
+            "args": [ "${workspaceFolder}/run.py", "coverage" ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Everysk - SHELL",
+            "type": "shell",
+            "command": "python",
+            "args": [ "${workspaceFolder}/run.py", "shell" ],
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "folderName",
+            "type": "promptString",
+            "description": "Folder name of the worker template.",
+            "default": ""
+        },
+    ]
+}
