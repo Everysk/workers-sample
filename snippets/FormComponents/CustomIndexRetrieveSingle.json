@@ -1,0 +1,75 @@
+{
+  "body": {
+    "id": "custom_index_query",
+    "name": "Custom Index",
+    "entityType": "custom_index",
+    "placeholder": "",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Custom Index",
+        "value": "selectCustomIndex"
+      },
+      {
+        "label": "Latest by Tags",
+        "value": "tagLatest"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "selectCustomIndex",
+    "variants": {
+      "selectCustomIndex": {
+        "type": "selectRemoteData",
+        "resultVariable": "custom_indexes",
+        "url": "custom_indexes",
+        "link": "custom_indexes",
+        "helperText": "Select an existing Custom Index.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        }
+      },
+      "tagLatest": {
+        "type": "tag",
+        "validation": "hashtag",
+        "helperText": "Set custom index tags. Retrieves the latest custom index containing the specified tags.",
+        "maxLength": 10,
+        "defaultValues": {
+          "value": []
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select a custom index, a custom index ID or a list of tags from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "custom_index",
+          "string",
+          "list"
+        ],
+        "listFilterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

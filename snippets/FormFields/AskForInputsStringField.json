@@ -1,0 +1,62 @@
+{
+  "body": {
+    "id": "_ASK_FOR_INPUTS_STRING_FIELD_ID_",
+    "name": "_ASK_FOR_INPUTS_STRING_FIELD_NAME_",
+    "placeholder": "_ASK_FOR_INPUTS_STRING_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Template Text",
+        "value": "metaString"
+      },
+      {
+        "label": "Ask For Inputs",
+        "value": "askInput"
+      }
+    ],
+    "defaultVariant": "metaString",
+    "variants": {
+      "metaString": {
+        "type": "metaString",
+        "helperText": "Set the _ASK_FOR_INPUTS_STRING_FIELD_NAME_ using template text.",
+        "maxLength": 250,
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "filterType": [
+          "number",
+          "string",
+          "date"
+        ]
+      },
+      "askInput": {
+        "type": "askInput",
+        "helperText": "Set the _ASK_FOR_INPUTS_STRING_FIELD_NAME_ using template text.",
+        "freeSolo": true,
+        "defaultValues": {
+          "select": {
+            "label": "String Input",
+            "value": "String Input"
+          }
+        },
+        "options": [
+          {
+            "label": "String Input",
+            "value": "String Input"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "body": {
+    "value": "custom_index",
+    "label": "Custom Index",
+    "type": "custom_index",
+    "nested_outputs": [
+      {
+        "value": "symbol",
+        "label": "Symbol",
+        "type": "string"
+      },
+      {
+        "value": "name",
+        "label": "Name",
+        "type": "string"
+      },
+      {
+        "value": "base_price",
+        "label": "Base Price",
+        "type": "number"
+      },
+      {
+        "value": "currency",
+        "label": "Currency",
+        "type": "string"
+      },
+      {
+        "value": "periodicity",
+        "label": "Periodicity",
+        "type": "string"
+      },
+      {
+        "value": "tags",
+        "label": "Tags",
+        "type": "list",
+        "list_item_type": "string"
+      },
+      {
+        "value": "data_type",
+        "label": "Data Type",
+        "type": "string"
+      },
+      {
+        "value": "data",
+        "label": "Data",
+        "type": "list",
+        "list_item_type": "list"
+      }
+    ]
+  }
+}

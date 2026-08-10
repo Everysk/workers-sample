@@ -9,13 +9,16 @@
 ###############################################################################
 
 ###############################################################################
-# Imports Scripts Tests Cases
+# Scripts Tests Cases
 ###############################################################################
+from scripts.tests_.create import CreateTestCase
+from scripts.tests_.debug import DebugTestCase
 from scripts.tests_.delete import DeleteTestCase
 from scripts.tests_.deploy import DeployTestCase
 from scripts.tests_.helpers import HelpersTestCase
 from scripts.tests_.snippets import SnippetsTestCase
+from scripts.tests_.venv import VenvTestCase
 
 ###############################################################################
-# Imports Workers Tests Cases
+# Workers Tests Cases
 ###############################################################################

@@ -1,0 +1,64 @@
+{
+  "body": {
+    "value": "portfolios",
+    "label": "Portfolios",
+    "type": "list",
+    "list_item_type": "portfolio",
+    "nested_outputs": [
+      {
+        "value": "id",
+        "label": "ID",
+        "type": "list",
+        "list_item_type": "string"
+      },
+      {
+        "value": "name",
+        "label": "Name",
+        "type": "list",
+        "list_item_type": "string"
+      },
+      {
+        "value": "workspace",
+        "label": "Workspace",
+        "type": "list",
+        "list_item_type": "string"
+      },
+      {
+        "value": "date",
+        "label": "Date",
+        "type": "list",
+        "list_item_type": "date"
+      },
+      {
+        "value": "nlv",
+        "label": "NLV",
+        "type": "list",
+        "list_item_type": "number"
+      },
+      {
+        "value": "base_currency",
+        "label": "Base Currency",
+        "type": "list",
+        "list_item_type": "string"
+      },
+      {
+        "value": "link_uid",
+        "label": "Link UID",
+        "type": "list",
+        "list_item_type": "string"
+      },
+      {
+        "value": "tags",
+        "label": "Tags",
+        "type": "list",
+        "list_item_type": "list"
+      },
+      {
+        "value": "securities",
+        "label": "Securities",
+        "type": "list",
+        "list_item_type": "list"
+      }
+    ]
+  }
+}

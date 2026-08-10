@@ -1,0 +1,55 @@
+{
+  "description": "Time Zone select input.",
+  "body": {
+    "id": "time_zone",
+    "name": "Time Zone",
+    "placeholder": "",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Time Zone",
+        "value": "select"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "select",
+    "variants": {
+      "select": {
+        "type": "select",
+        "optionsSource": "timeZoneList",
+        "helperText": "Set the time zone.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the time zone from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "body": {
+    "label": "_NUMBER_FIELD_LABEL_",
+    "value": "_NUMBER_FIELD_VALUE_",
+    "type": "number"
+  }
+}

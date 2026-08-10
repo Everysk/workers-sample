@@ -1,0 +1,51 @@
+{
+  "description": "",
+  "body": {
+    "id": "_DATE_FIELD_ID_",
+    "name": "_DATE_FIELD_NAME_",
+    "placeholder": "_DATE_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Date",
+        "value": "date"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "date",
+    "variants": {
+      "date": {
+        "type": "date",
+        "helperText": "Set or select the _DATE_FIELD_NAME_.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _DATE_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "date"
+        ]
+      }
+    }
+  }
+}

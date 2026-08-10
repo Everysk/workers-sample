@@ -1,0 +1,74 @@
+{
+  "body": {
+    "id": "private_security_query",
+    "name": "Private Security",
+    "entityType": "private_security",
+    "placeholder": "",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Private Security",
+        "value": "selectPrivateSecurity"
+      },
+      {
+        "label": "Latest by Tags",
+        "value": "tagLatest"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "selectPrivateSecurity",
+    "variants": {
+      "selectPrivateSecurity": {
+        "type": "selectRemoteData",
+        "resultVariable": "private_securities",
+        "url": "private_securities",
+        "link": "private_securities",
+        "helperText": "Select an existing private security.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        }
+      },
+      "tagLatest": {
+        "type": "tag",
+        "validation": "hashtag",
+        "helperText": "Set private security tags. Retrieves the latest private security containing the specified tags.",
+        "maxLength": 10,
+        "defaultValues": {
+          "value": []
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select a private security, a private security ID or a list tags from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "private_security",
+          "list"
+        ],
+        "listFilterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

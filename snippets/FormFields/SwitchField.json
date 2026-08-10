@@ -1,0 +1,31 @@
+{
+  "body": {
+    "id": "_SWICTH_FIELD_ID_",
+    "name": "_SWICTH_FIELD_NAME_",
+    "helperText": "Select the _SWICTH_FIELD_NAME_ option.",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Value",
+        "value": "boolean"
+      }
+    ],
+    "defaultVariant": "boolean",
+    "variants": {
+      "boolean": {
+        "labelLeft": "_LEFT_OPTION_",
+        "labelRight": "_RIGHT_OPTION_",
+        "type": "boolean",
+        "defaultValues": {
+          "value": false
+        }
+      }
+    }
+  }
+}

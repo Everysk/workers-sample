@@ -1,0 +1,16 @@
+{
+  "body": {
+    "label": "_LIST_LIST_FIELD_LABEL_",
+    "value": "_LIST_LIST_FIELD_VALUE_",
+    "type": "list",
+    "list_item_type": "list",
+    "nested_outputs": [
+      {
+        "label": "_LIST_FIELD_LABEL_",
+        "value": "_LIST_FIELD_VALUE_",
+        "type": "list",
+        "list_item_type": "list"
+      }
+    ]
+  }
+}

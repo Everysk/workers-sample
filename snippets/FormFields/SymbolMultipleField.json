@@ -1,0 +1,55 @@
+{
+  "body": {
+    "id": "_SYMBOL_MULTIPLE_FIELD_ID_",
+    "name": "_SYMBOL_MULTIPLE_FIELD_NAME_",
+    "placeholder": "_SYMBOL_MULTIPLE_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Symbols",
+        "value": "symbolMultiple"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "symbolMultiple",
+    "variants": {
+      "symbolMultiple": {
+        "type": "symbol",
+        "helperText": "Add _SYMBOL_MULTIPLE_FIELD_NAME_ separating them with spaces.",
+        "multiple": true,
+        "maxLength": 10,
+        "defaultValues": {
+          "select": []
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _SYMBOL_MULTIPLE_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "list"
+        ],
+        "listFilterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "body": {
+    "id": "_CHECKBOX_FIELD_ID_",
+    "name": "_CHECKBOX_FIELD_NAME_",
+    "helperText": "_CHECKBOX_HELPER_TEXT_.",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Boolean",
+        "value": "boolean"
+      }
+    ],
+    "defaultVariant": "boolean",
+    "variants": {
+      "boolean": {
+        "inputType": "checkbox",
+        "type": "boolean",
+        "defaultValues": {
+          "value": false
+        }
+      }
+    }
+  }
+}

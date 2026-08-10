@@ -1,0 +1,51 @@
+{
+  "body": {
+    "id": "_JSON_FIELD_ID_",
+    "name": "_JSON_FIELD_NAME_",
+    "placeholder": "_JSON_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Json",
+        "value": "json"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "json",
+    "variants": {
+      "json": {
+        "type": "json",
+        "language": "json",
+        "helperText": "Set the _JSON_FIELD_NAME_ using template text.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _JSON_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

@@ -20,7 +20,8 @@ ENTRYPOINTS = {
     "venv": f"{PWD}/scripts/venv.py",
     "deploy": f"{PWD}/scripts/deploy.py",
     "delete": f"{PWD}/scripts/delete.py",
-    "debug": f"{PWD}/scripts/debug.py"
+    "debug": f"{PWD}/scripts/debug.py",
+    "snippets": f"{PWD}/scripts/snippets.py"
 }
 
 os.environ["PYTHONPATH"] = f"{PWD};{PWD}\\workers" if os.name == 'nt' else f"{PWD}:{PWD}/workers"
@@ -41,7 +42,7 @@ def run_python(command, params):
 
 def main():
     if len(sys.argv) < 2:
-        print("Option not found, please select one of the following options: deploy, delete, debug, tests, coverage")
+        print("Option not found, please select one of the following options: create, venv, shell, snippets, deploy, delete, debug, tests, coverage")
         sys.exit(1)
 
     command = sys.argv[1]
@@ -55,6 +56,8 @@ def main():
         run_python(command, params)
     elif command == "shell":
         subprocess.run(["/usr/local/bin/ipython"])
+    elif command == "snippets":
+        run_python(command, params)
     elif command in ("deploy", "delete"):
         try:
             run_python(command, params)
@@ -67,14 +70,15 @@ def main():
     elif command == "tests":
         print("Running tests...")
         tests = params if params else ["scripts.tests"]
-        subprocess.run([PYTHON, "-W", "ignore", "-m", "unittest", "-f"] + tests)
+        result = subprocess.run([PYTHON, "-W", "ignore", "-m", "unittest", "-f"] + tests)
+        sys.exit(result.returncode)
     elif command == "coverage":
         print("Running coverage tests...")
         os.environ["PYTHONWARNINGS"] = "ignore"
         subprocess.run(["/usr/local/bin/coverage", "run", "-m", "unittest", "-f"] + params)
         subprocess.run(["/usr/local/bin/coverage", "report"])
     else:
-        print("Option not found, please select one of the following options: deploy, delete, debug, tests, coverage")
+        print("Option not found, please select one of the following options: create, venv, shell, snippets, deploy, delete, debug, tests, coverage")
         sys.exit(1)
 
 

@@ -1,0 +1,60 @@
+{
+  "body": {
+    "id": "_EXPRESSION_FIELD_ID_",
+    "name": "_EXPRESSION_FIELD_NAME_",
+    "placeholder": "_EXPRESSION_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Expression",
+        "value": "expression"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "expression",
+    "variants": {
+      "expression": {
+        "type": "expression",
+        "suggestions": [
+          {
+            "type": "datastore",
+            "optionsPath": "path.to.datastore"
+          },
+          {
+            "type": "assemblerMultiple",
+            "optionsPath": "path.to.assembler_multiple"
+          }
+        ],
+        "helperText": "Set the _EXPRESSION_FIELD_NAME_ with a fixed expression.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _EXPRESSION_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

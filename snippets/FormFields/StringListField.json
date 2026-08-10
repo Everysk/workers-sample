@@ -1,0 +1,56 @@
+{
+  "body": {
+    "id": "_STRING_LIST_FIELD_ID_",
+    "name": "_STRING_LIST_FIELD_NAME_",
+    "placeholder": "_STRING_LIST_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "multiline": false,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Text List",
+        "value": "stringList"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "stringList",
+    "variants": {
+      "stringList": {
+        "type": "stringList",
+        "helperText": "Set the _STRING_LIST_FIELD_NAME_ with multiple fixed texts.",
+        "max": 10,
+        "maxLength": 250,
+        "defaultValues": {
+          "value": []
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _STRING_LIST_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "list"
+        ],
+        "listFilterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

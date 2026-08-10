@@ -1,0 +1,91 @@
+{
+  "body": [
+    {
+      "id": "operation_mode",
+      "name": "__FIELD_NAME__ mode",
+      "placeholder": "",
+      "helperText": "Select a __FIELD_NAME__ mode.",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": "get_operation_mode_grid_size",
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "value": "select",
+          "label": "Fixed Input"
+        }
+      ],
+      "defaultVariant": "select",
+      "variants": {
+        "select": {
+          "type": "select",
+          "defaultValues": {
+            "select": {
+              "value": "single",
+              "label": "Single __OBJECT__"
+            }
+          },
+          "options": [
+            {
+              "value": "single",
+              "label": "Single __OBJECT__"
+            },
+            {
+              "value": "multiple",
+              "label": "Multiple __OBJECT__s"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "return_mode",
+      "name": "Return mode",
+      "placeholder": "",
+      "helperText": "Whether or not to parallelize the downstream flow.",
+      "tipover": "",
+      "isVisibleFunction": "is_operation_mode_multiple",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 6,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "value": "select",
+          "label": "Fixed Input"
+        }
+      ],
+      "defaultVariant": "select",
+      "variants": {
+        "select": {
+          "type": "select",
+          "defaultValues": {
+            "select": {
+              "value": "forker",
+              "label": "Returns each __OBJECT__ in a separate downstream flow"
+            }
+          },
+          "options": [
+            {
+              "value": "forker",
+              "label": "Returns each __OBJECT__ in a separate downstream flow"
+            },
+            {
+              "value": "basic",
+              "label": "Returns all __OBJECT__s in a single downstream flow"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

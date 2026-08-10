@@ -1,0 +1,467 @@
+{
+  "body": {
+    "id": "conditions",
+    "name": "Conditions",
+    "type": "assembler",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": false,
+    "displayName": true,
+    "withoutMessages": false,
+    "selfFirst": false,
+    "selfField": {
+      "fields": [
+        {
+          "id": "expression",
+          "name": "Conditions",
+          "tipover": "",
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 12,
+          "mandatory": false,
+          "displayName": false,
+          "withoutMessages": true,
+          "variantOptions": [
+            {
+              "label": "Fixed Expression",
+              "value": "expression"
+            },
+            {
+              "label": "Upstream Data",
+              "value": "previousWorkers"
+            }
+          ],
+          "defaultVariant": "expression",
+          "variants": {
+            "expression": {
+              "type": "expression",
+              "suggestions": [
+                {
+                  "type": "datastore",
+                  "optionsPath": "path.to.datastore"
+                },
+                {
+                  "type": "assemblerMultiple",
+                  "optionsPath": "path.to.assembler_multiple"
+                }
+              ],
+              "helperText": "Set the conditon using a fixed expression.",
+              "defaultValues": {
+                "value": ""
+              }
+            },
+            "previousWorkers": {
+              "type": "nestedAttributes",
+              "helperText": "Select the expression from a previous worker.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "options": [],
+              "filterType": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "fields": [
+      {
+        "id": "object",
+        "name": "Conditions",
+        "type": "assemblerNested",
+        "rules": "conditions",
+        "addLabel": "Add Condition",
+        "addGroupLabel": "Add Condition Group",
+        "min": 0,
+        "max": 3,
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 12,
+        "mandatory": false,
+        "displayName": false,
+        "withoutMessages": true,
+        "fields": [
+          {
+            "id": "logic_operator",
+            "name": "Logic Operator",
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "gridSizeMd": 12,
+            "displayName": false,
+            "withoutMessages": true,
+            "variantOptions": [
+              {
+                "label": "Fixed Value",
+                "value": "boolean"
+              }
+            ],
+            "defaultVariant": "boolean",
+            "variants": {
+              "boolean": {
+                "labelLeft": "AND",
+                "labelRight": "OR",
+                "valueLeft": "AND",
+                "valueRight": "OR",
+                "type": "boolean",
+                "inputType": "innerLabel",
+                "defaultValues": {
+                  "value": "OR"
+                }
+              }
+            }
+          },
+          {
+            "id": "conditions",
+            "type": "assembler",
+            "addLabel": "Add condition",
+            "min": 0,
+            "max": 50,
+            "paddingLeft": 4,
+            "paddingRight": 0,
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "gridSizeMd": 12,
+            "multiple": true,
+            "mandatory": true,
+            "displayName": true,
+            "withoutMessages": 1,
+            "fields": [
+              {
+                "id": "column",
+                "name": "Column",
+                "tipover": "",
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "gridSizeMd": 4,
+                "mandatory": true,
+                "displayName": true,
+                "withoutMessages": false,
+                "variantOptions": [
+                  {
+                    "label": "Fixed Column",
+                    "value": "select"
+                  },
+                  {
+                    "label": "Template Text",
+                    "value": "metaString"
+                  },
+                  {
+                    "label": "Upstream Data",
+                    "value": "previousWorkers"
+                  }
+                ],
+                "defaultVariant": "select",
+                "variants": {
+                  "select": {
+                    "freeSolo": true,
+                    "type": "select",
+                    "optionsType": "datastore",
+                    "optionsPath": "_PATH_TO_DATASTORE_",
+                    "optionsDefault": [],
+                    "placeholder": "Select the column from the options",
+                    "defaultValues": {
+                      "select": {
+                        "label": "",
+                        "value": ""
+                      }
+                    },
+                    "options": []
+                  },
+                  "metaString": {
+                    "type": "metaString",
+                    "helperText": "Set the column using template text.",
+                    "maxLength": 250,
+                    "defaultValues": {
+                      "select": {
+                        "label": "",
+                        "value": ""
+                      }
+                    },
+                    "filterType": [
+                      "number",
+                      "string",
+                      "date"
+                    ]
+                  },
+                  "previousWorkers": {
+                    "type": "nestedAttributes",
+                    "placeholder": "Select the column from a previous worker",
+                    "defaultValues": {
+                      "select": {
+                        "label": "",
+                        "value": ""
+                      }
+                    },
+                    "options": [],
+                    "filterType": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              {
+                "id": "operator",
+                "name": "Operator",
+                "tipover": "",
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "gridSizeMd": 4,
+                "mandatory": true,
+                "displayName": true,
+                "withoutMessages": false,
+                "variantOptions": [
+                  {
+                    "label": "Fixed Value",
+                    "value": "select"
+                  }
+                ],
+                "defaultVariant": "select",
+                "variants": {
+                  "select": {
+                    "type": "select",
+                    "defaultValues": {
+                      "select": {
+                        "value": "==",
+                        "label": "Equal"
+                      }
+                    },
+                    "options": [
+                      {
+                        "value": "==",
+                        "label": "Equal"
+                      },
+                      {
+                        "value": "!=",
+                        "label": "Not Equal"
+                      },
+                      {
+                        "value": ">",
+                        "label": "Greater than"
+                      },
+                      {
+                        "value": ">=",
+                        "label": "Greater or Equal"
+                      },
+                      {
+                        "value": "<",
+                        "label": "Less than"
+                      },
+                      {
+                        "value": "<=",
+                        "label": "Less or Equal"
+                      },
+                      {
+                        "value": "startswith",
+                        "label": "Starts With"
+                      },
+                      {
+                        "value": "not_startswith",
+                        "label": "Does Not Start With"
+                      },
+                      {
+                        "value": "endswith",
+                        "label": "Ends With"
+                      },
+                      {
+                        "value": "not_endswith",
+                        "label": "Does Not End With"
+                      },
+                      {
+                        "value": "match",
+                        "label": "Matches Regex"
+                      },
+                      {
+                        "value": "not_match",
+                        "label": "Does Not Match Regex"
+                      },
+                      {
+                        "value": "exists",
+                        "label": "Exists"
+                      },
+                      {
+                        "value": "not_exists",
+                        "label": "Does Not Exist"
+                      },
+                      {
+                        "value": "is_empty",
+                        "label": "Is Empty"
+                      },
+                      {
+                        "value": "not_is_empty",
+                        "label": "Is Not Empty"
+                      },
+                      {
+                        "value": "is_in",
+                        "label": "In"
+                      },
+                      {
+                        "value": "not_is_in",
+                        "label": "Not In"
+                      },
+                      {
+                        "value": "has_substring",
+                        "label": "Has substring"
+                      },
+                      {
+                        "value": "not_has_substring",
+                        "label": "Does not have substring"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "id": "value",
+                "name": "Value",
+                "isEnabledFunction": "is_nullary_condition_operator",
+                "tipover": "",
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "gridSizeMd": 4,
+                "mandatory": true,
+                "displayName": true,
+                "withoutMessages": false,
+                "variantOptions": [
+                  {
+                    "label": "Template Text",
+                    "value": "metaString"
+                  },
+                  {
+                    "label": "Fixed Number",
+                    "value": "number"
+                  },
+                  {
+                    "label": "Fixed Boolean",
+                    "value": "selectBoolean"
+                  },
+                  {
+                    "label": "Fixed Date",
+                    "value": "date"
+                  },
+                  {
+                    "label": "Fixed List",
+                    "value": "selectMultiple"
+                  },
+                  {
+                    "label": "Upstream Data",
+                    "value": "previousWorkers"
+                  }
+                ],
+                "defaultVariant": "metaString",
+                "variants": {
+                  "metaString": {
+                    "type": "metaString",
+                    "placeholder": "Set the value using template text",
+                    "maxLength": 250,
+                    "defaultValues": {
+                      "select": {
+                        "label": "",
+                        "value": ""
+                      }
+                    },
+                    "filterType": [
+                      "number",
+                      "string",
+                      "date"
+                    ]
+                  },
+                  "number": {
+                    "type": "number",
+                    "placeholder": "Set the value with a fixed number",
+                    "defaultValues": {
+                      "value": ""
+                    }
+                  },
+                  "selectBoolean": {
+                    "type": "select",
+                    "placeholder": "Select the value from the options",
+                    "defaultValues": {
+                      "select": {
+                        "label": "True",
+                        "value": true
+                      }
+                    },
+                    "options": [
+                      {
+                        "label": "True",
+                        "value": true
+                      },
+                      {
+                        "label": "False",
+                        "value": false
+                      }
+                    ]
+                  },
+                  "date": {
+                    "type": "date",
+                    "placeholder": "Set or select with a fixed date",
+                    "defaultValues": {
+                      "value": ""
+                    }
+                  },
+                  "selectMultiple": {
+                    "freeSolo": true,
+                    "sort": false,
+                    "type": "selectMultiple",
+                    "placeholder": "Set or select the values from the options",
+                    "optionsType": "datastoreValues",
+                    "optionsPath": "path.to.datastore",
+                    "columnPath": "path.to.column_value",
+                    "optionsDefault": [],
+                    "defaultValues": {
+                      "select": []
+                    },
+                    "options": []
+                  },
+                  "previousWorkers": {
+                    "type": "nestedAttributes",
+                    "placeholder": "Select the value from a previous worker",
+                    "defaultValues": {
+                      "select": {
+                        "label": "",
+                        "value": ""
+                      }
+                    },
+                    "options": [],
+                    "filterType": [
+                      "string",
+                      "number",
+                      "date",
+                      "boolean",
+                      "list"
+                    ],
+                    "listFilterType": [
+                      "string",
+                      "number",
+                      "date",
+                      "boolean"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

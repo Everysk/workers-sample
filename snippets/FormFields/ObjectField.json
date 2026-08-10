@@ -1,0 +1,39 @@
+{
+  "body": {
+    "id": "_OBJECT_FIELD_ID_",
+    "name": "_OBJECT_FIELD_NAME_",
+    "placeholder": "_OBJECT_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "previousWorkers",
+    "variants": {
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _OBJECT_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "object"
+        ]
+      }
+    }
+  }
+}

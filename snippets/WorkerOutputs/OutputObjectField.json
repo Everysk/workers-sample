@@ -1,0 +1,8 @@
+{
+  "body": {
+    "label": "_OBJECT_FIELD_LABEL_",
+    "value": "_OBJECT_FIELD_VALUE_",
+    "type": "object",
+    "nested_outputs": []
+  }
+}

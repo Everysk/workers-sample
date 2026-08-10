@@ -1,0 +1,73 @@
+{
+  "body": {
+    "id": "tags",
+    "name": "Tags",
+    "type": "assembler",
+    "addLabel": "Add Tag",
+    "min": 1,
+    "max": 10,
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "multiple": true,
+    "mandatory": false,
+    "displayName": true,
+    "withoutMessages": 1,
+    "fields": [
+      {
+        "id": "tag",
+        "name": "Tags",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 12,
+        "variantOptions": [
+          {
+            "label": "Fixed Tags",
+            "value": "tag"
+          },
+          {
+            "label": "Upstream Data",
+            "value": "previousWorkers"
+          }
+        ],
+        "defaultVariant": "tag",
+        "variants": {
+          "tag": {
+            "type": "tag",
+            "validation": "hashtag",
+            "placeholder": "Add multiple tags separating them with spaces",
+            "defaultValues": {
+              "value": []
+            }
+          },
+          "previousWorkers": {
+            "type": "nestedAttributes",
+            "placeholder": "Select the tags from a previous worker",
+            "defaultValues": {
+              "select": {
+                "label": "",
+                "value": ""
+              }
+            },
+            "options": [],
+            "filterType": [
+              "list",
+              "string",
+              "date",
+              "number"
+            ],
+            "listFilterType": [
+              "string",
+              "date",
+              "number"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

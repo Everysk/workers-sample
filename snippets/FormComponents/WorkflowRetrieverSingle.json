@@ -1,0 +1,94 @@
+{
+  "body": [
+    {
+      "id": "workflow_query",
+      "name": "Workflow",
+      "entityType": "workflow",
+      "workspace": "workflow_query_workspace",
+      "placeholder": "",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 11,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed Workflow",
+          "value": "selectWorkflow"
+        },
+        {
+          "label": "Upstream data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "selectWorkflow",
+      "variants": {
+        "selectWorkflow": {
+          "type": "selectRemoteData",
+          "resultVariable": "workflows",
+          "url": "workflows",
+          "link": "workflows",
+          "helperText": "Select an existing workflow.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select the workflow ID from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "id": "workflow_query_workspace",
+      "name": "Workspace",
+      "permission": "workflows.save_source_code",
+      "placeholder": "Using current workspace",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 1,
+      "variantOptions": [
+        {
+          "label": "Fixed Workspace",
+          "value": "selectWorkspace"
+        }
+      ],
+      "defaultVariant": "selectWorkspace",
+      "variants": {
+        "selectWorkspace": {
+          "type": "selectRemoteData",
+          "resultVariable": "workspaces",
+          "url": "workspaces",
+          "link": "workspaces",
+          "helperText": "Select an existing workspace.",
+          "icon": true,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        }
+      }
+    }
+  ]
+}

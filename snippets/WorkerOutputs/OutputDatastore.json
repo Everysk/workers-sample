@@ -1,0 +1,104 @@
+{
+  "body": {
+    "DATASTORE": [
+      {
+        "value": "datastore",
+        "label": "Datastore",
+        "type": "datastore",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "string"
+          },
+          {
+            "value": "workspace",
+            "label": "Workspace",
+            "type": "string"
+          },
+          {
+            "value": "date",
+            "label": "Date",
+            "type": "date"
+          },
+          {
+            "value": "link_uid",
+            "label": "Link UID",
+            "type": "string"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "data",
+            "label": "Data",
+            "type": "list",
+            "list_item_type": "list"
+          }
+        ]
+      }
+    ],
+    "DATASTORE_WITHOUT_DATA": [
+      {
+        "value": "datastore",
+        "label": "Datastore",
+        "type": "datastore",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "string"
+          },
+          {
+            "value": "workspace",
+            "label": "Workspace",
+            "type": "string"
+          },
+          {
+            "value": "date",
+            "label": "Date",
+            "type": "date"
+          },
+          {
+            "value": "link_uid",
+            "label": "Link UID",
+            "type": "string"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "string"
+          }
+        ]
+      }
+    ],
+    "DATASTORE_ID_ONLY": [
+      {
+        "value": "datastore",
+        "label": "Datastore",
+        "type": "datastore",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

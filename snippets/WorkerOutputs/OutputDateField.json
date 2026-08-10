@@ -1,0 +1,7 @@
+{
+  "body": {
+    "label": "_DATE_FIELD_LABEL_",
+    "value": "_DATE_FIELD_VALUE_",
+    "type": "date"
+  }
+}

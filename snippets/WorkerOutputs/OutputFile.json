@@ -1,0 +1,113 @@
+{
+  "body": {
+    "FILE": [
+      {
+        "value": "file",
+        "label": "File",
+        "type": "file",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "string"
+          },
+          {
+            "value": "link_uid",
+            "label": "Link UID",
+            "type": "string"
+          },
+          {
+            "value": "date",
+            "label": "Date",
+            "type": "date"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "workspace",
+            "label": "Workspace",
+            "type": "string"
+          },
+          {
+            "value": "content_type",
+            "label": "Content Type",
+            "type": "string"
+          },
+          {
+            "value": "data",
+            "label": "Data",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "FILE_WITHOUT_DATA": [
+      {
+        "value": "file",
+        "label": "File",
+        "type": "file",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "string"
+          },
+          {
+            "value": "link_uid",
+            "label": "Link UID",
+            "type": "string"
+          },
+          {
+            "value": "date",
+            "label": "Date",
+            "type": "date"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "workspace",
+            "label": "Workspace",
+            "type": "string"
+          },
+          {
+            "value": "content_type",
+            "label": "Content Type",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "FILE_ID_ONLY": [
+      {
+        "value": "file",
+        "label": "File",
+        "type": "file",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

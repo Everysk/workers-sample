@@ -1,0 +1,52 @@
+{
+  "body": {
+    "id": "_RICH_TEXT_FIELD_ID_",
+    "name": "_RICH_TEXT_FIELD_NAME_",
+    "placeholder": "_RICH_TEXT_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Template Text",
+        "value": "richText"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "richText",
+    "variants": {
+      "richText": {
+        "type": "richText",
+        "filterType": "string",
+        "helperText": "Set the _RICH_TEXT_FIELD_NAME_ using template text.",
+        "maxLength": 250,
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _RICH_TEXT_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "body": [
+    {
+      "id": "file_query",
+      "name": "File",
+      "entityType": "file",
+      "workspace": "file_query_workspace",
+      "placeholder": "",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 11,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed File",
+          "value": "selectFile"
+        },
+        {
+          "label": "Latest by Tags",
+          "value": "tagLatest"
+        },
+        {
+          "label": "Latest by Link UID",
+          "value": "linkLatest"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "selectFile",
+      "variants": {
+        "selectFile": {
+          "type": "selectRemoteData",
+          "resultVariable": "files",
+          "url": "files",
+          "link": "files",
+          "requestParameters": {
+            "content_types": []
+          },
+          "helperText": "Select an existing file.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        },
+        "tagLatest": {
+          "type": "tag",
+          "validation": "hashtag",
+          "helperText": "Set file tags. Retrieves the latest file containing the specified tags.",
+          "maxLength": 10,
+          "defaultValues": {
+            "value": []
+          }
+        },
+        "linkLatest": {
+          "type": "metaString",
+          "helperText": "Set file link UID. Retrieves the latest file containing the specified link UID.",
+          "maxLength": 250,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "filterType": [
+            "number",
+            "string",
+            "date"
+          ]
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select a file, a file ID, a link UID or a list of tags from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "file",
+            "string",
+            "list"
+          ],
+          "listFilterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "id": "file_query_workspace",
+      "name": "Workspace",
+      "permission": "workflows.save_source_code",
+      "placeholder": "Using current workspace",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 1,
+      "variantOptions": [
+        {
+          "label": "Fixed Workspace",
+          "value": "selectWorkspace"
+        }
+      ],
+      "defaultVariant": "selectWorkspace",
+      "variants": {
+        "selectWorkspace": {
+          "type": "selectRemoteData",
+          "resultVariable": "workspaces",
+          "url": "workspaces",
+          "link": "workspaces",
+          "helperText": "Select an existing workspace.",
+          "icon": true,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        }
+      }
+    }
+  ]
+}

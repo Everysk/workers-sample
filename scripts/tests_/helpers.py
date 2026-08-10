@@ -16,7 +16,7 @@ import os
 from unittest import TestCase
 from unittest.mock import patch, call
 
-from scripts.helpers import get_folder_names, get_header, get_base_url
+from scripts.helpers import get_folder_names, get_header, get_base_url, load_env
 
 ################################################################################
 # Helpers Test Case Implementation
@@ -56,7 +56,7 @@ class HelpersTestCase(TestCase):
         expected_header = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer sid:token',
-            'EVERYSK_MANAGED_DEPLOY': 'Potato'
+            'Everysk-Managed-Deploy': 'Potato'
         }
 
         with patch('os.getenv') as mock_getenv:
@@ -85,3 +85,8 @@ class HelpersTestCase(TestCase):
             call('EVERYSK_API_URL_DOMAIN', 'api.everysk.com'),
             call('EVERYSK_API_VERSION', 'v2')
         ])
+
+    def test_load_env_calls_load_dotenv(self):
+        with patch('scripts.helpers.load_dotenv') as mock_load_dotenv:
+            load_env()
+        mock_load_dotenv.assert_called_once()

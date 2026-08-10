@@ -1,0 +1,106 @@
+{
+  "body": {
+    "PRIVATE_SECURITIES": [
+      {
+        "label": "Private Securities",
+        "value": "private_securities",
+        "type": "list",
+        "list_item_type": "private_security",
+        "nested_outputs": [
+          {
+            "value": "symbol",
+            "label": "Symbol",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "currency",
+            "label": "Currency",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "type",
+            "label": "Type",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "list"
+          },
+          {
+            "value": "data",
+            "label": "Data",
+            "type": "list",
+            "list_item_type": "object"
+          }
+        ]
+      }
+    ],
+    "PRIVATE_SECURITIES_WITHOUT_DATA": [
+      {
+        "label": "Private Securities",
+        "value": "private_securities",
+        "type": "list",
+        "list_item_type": "private_security",
+        "nested_outputs": [
+          {
+            "value": "symbol",
+            "label": "Symbol",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "currency",
+            "label": "Currency",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "type",
+            "label": "Type",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "list"
+          }
+        ]
+      }
+    ],
+    "PRIVATE_SECURITIES_ID_ONLY": [
+      {
+        "label": "Private Securities",
+        "value": "private_securities",
+        "type": "list",
+        "list_item_type": "private_security",
+        "nested_outputs": [
+          {
+            "value": "symbol",
+            "label": "Symbol",
+            "type": "list",
+            "list_item_type": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

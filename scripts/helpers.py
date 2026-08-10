@@ -66,7 +66,7 @@ def get_header() -> dict:
     return {
         'Authorization': f"Bearer {os.getenv('EVERYSK_API_SID')}:{os.getenv('EVERYSK_API_TOKEN')}",
         'Content-Type': 'application/json',
-        'EVERYSK_MANAGED_DEPLOY': os.getenv('EVERYSK_MANAGED_DEPLOY', 'None')
+        'Everysk-Managed-Deploy': os.getenv('EVERYSK_MANAGED_DEPLOY', 'None')
     }
 
 def get_base_url() -> str:

@@ -1,0 +1,194 @@
+{
+  "body": [
+    {
+      "id": "date_mode",
+      "name": "Date Mode",
+      "placeholder": "",
+      "helperText": "Select a date mode.",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 4,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "value": "select",
+          "label": "Fixed Input"
+        }
+      ],
+      "defaultVariant": "select",
+      "variants": {
+        "select": {
+          "type": "select",
+          "defaultValues": {
+            "select": {
+              "value": "single_date",
+              "label": "Single Date"
+            }
+          },
+          "options": [
+            {
+              "value": "single_date",
+              "label": "Single Date"
+            },
+            {
+              "value": "date_interval",
+              "label": "Date Interval"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "date",
+      "name": "Date",
+      "placeholder": "",
+      "tipover": "",
+      "isVisibleFunction": "is_single_date",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 8,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed Date",
+          "value": "date"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "date",
+      "variants": {
+        "date": {
+          "type": "date",
+          "helperText": "Set the portfolio query date.",
+          "defaultValues": {
+            "value": ""
+          }
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select the portfolio query date from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "date"
+          ]
+        }
+      }
+    },
+    {
+      "id": "start_date",
+      "name": "Start Date",
+      "placeholder": "",
+      "tipover": "",
+      "isVisibleFunction": "is_date_interval",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 4,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed Date",
+          "value": "date"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "date",
+      "variants": {
+        "date": {
+          "type": "date",
+          "helperText": "Set the portfolio query start date.",
+          "defaultValues": {
+            "value": ""
+          }
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select the portfolio query start date from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "date"
+          ]
+        }
+      }
+    },
+    {
+      "id": "end_date",
+      "name": "End Date",
+      "placeholder": "",
+      "tipover": "",
+      "isVisibleFunction": "is_date_interval",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 4,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed Date",
+          "value": "date"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "date",
+      "variants": {
+        "date": {
+          "type": "date",
+          "helperText": "Set the portfolio query end date.",
+          "defaultValues": {
+            "value": ""
+          }
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select the portfolio query end date from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "date"
+          ]
+        }
+      }
+    }
+  ]
+}

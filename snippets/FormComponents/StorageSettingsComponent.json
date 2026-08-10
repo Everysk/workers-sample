@@ -1,0 +1,167 @@
+{
+  "body": {
+    "id": "storage_settings",
+    "name": "Storage Settings",
+    "type": "assembler",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": false,
+    "displayName": false,
+    "withoutMessages": false,
+    "fields": [
+      {
+        "id": "storage_mode",
+        "name": "Storage Mode",
+        "placeholder": "Select the storage mode",
+        "helperText": "Select an option to storage the entity.",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingTop": 0,
+        "gridSizeMd": "get_storage_mode_grid_size",
+        "mandatory": true,
+        "displayName": true,
+        "withoutMessages": false,
+        "variantOptions": [
+          {
+            "label": "Fixed Value",
+            "value": "select"
+          }
+        ],
+        "defaultVariant": "select",
+        "variants": {
+          "select": {
+            "type": "select",
+            "defaultValues": {
+              "select": {
+                "value": "create",
+                "label": "Create"
+              }
+            },
+            "options": [
+              {
+                "value": "transient",
+                "label": "Transient"
+              },
+              {
+                "value": "create",
+                "label": "Create"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "projection",
+        "name": "Projection",
+        "placeholder": "",
+        "tipover": "",
+        "isVisibleFunction": "is_storage_mode_create",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 6,
+        "mandatory": true,
+        "displayName": true,
+        "withoutMessages": false,
+        "variantOptions": [
+          {
+            "value": "select",
+            "label": "Fixed Input"
+          }
+        ],
+        "defaultVariant": "select",
+        "variants": {
+          "select": {
+            "type": "select",
+            "helperText": "Select which entity's attributes will be returned.",
+            "defaultValues": {
+              "select": {
+                "value": "without_data",
+                "label": "Without Data"
+              }
+            },
+            "options": [
+              {
+                "value": "id_only",
+                "label": "ID Only"
+              },
+              {
+                "value": "without_data",
+                "label": "Without Data"
+              },
+              {
+                "value": "whole",
+                "label": "Whole Entity"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "consistency_check",
+        "name": "Enable consistency check by Link UID",
+        "isVisibleFunction": "is_storage_mode_create",
+        "helperText": "",
+        "tipover": "Checks for an existing entity with the same link UID, date and workspace and updates it to prevent duplication.",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 12,
+        "displayName": true,
+        "withoutMessages": false,
+        "variantOptions": [
+          {
+            "label": "User Input",
+            "value": "boolean"
+          }
+        ],
+        "defaultVariant": "boolean",
+        "variants": {
+          "boolean": {
+            "inputType": "checkbox",
+            "type": "boolean",
+            "defaultValues": {
+              "value": false
+            }
+          }
+        }
+      },
+      {
+        "id": "validate",
+        "name": "Validate the entity parameters",
+        "isVisibleFunction": "is_storage_mode_transient",
+        "helperText": "",
+        "tipover": "",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 12,
+        "displayName": true,
+        "withoutMessages": false,
+        "variantOptions": [
+          {
+            "label": "User Input",
+            "value": "boolean"
+          }
+        ],
+        "defaultVariant": "boolean",
+        "variants": {
+          "boolean": {
+            "inputType": "checkbox",
+            "type": "boolean",
+            "defaultValues": {
+              "value": false
+            }
+          }
+        }
+      }
+    ]
+  }
+}

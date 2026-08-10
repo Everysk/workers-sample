@@ -1,0 +1,127 @@
+{
+  "body": [
+    {
+      "id": "report_query",
+      "name": "Report",
+      "entityType": "report",
+      "workspace": "report_query_workspace",
+      "placeholder": "",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 11,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed Report",
+          "value": "selectReport"
+        },
+        {
+          "label": "Latest by Tags",
+          "value": "tagLatest"
+        },
+        {
+          "label": "Latest by Link UID",
+          "value": "linkLatest"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "selectReport",
+      "variants": {
+        "selectReport": {
+          "type": "selectRemoteData",
+          "resultVariable": "reports",
+          "url": "reports",
+          "link": "reports",
+          "helperText": "Select an existing report.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        },
+        "tagLatest": {
+          "type": "tag",
+          "validation": "hashtag",
+          "helperText": "Set report tags. Retrieves the latest report containing the specified tags.",
+          "maxLength": 10,
+          "defaultValues": {
+            "value": []
+          }
+        },
+        "linkLatest": {
+          "type": "metaString",
+          "helperText": "Set report link UID. Retrieves the latest report containing the specified link UID.",
+          "maxLength": 250,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "filterType": [
+            "number",
+            "string",
+            "date"
+          ]
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select a report from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "report"
+          ]
+        }
+      }
+    },
+    {
+      "id": "report_query_workspace",
+      "name": "Workspace",
+      "permission": "workflows.save_source_code",
+      "placeholder": "Using current workspace",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 1,
+      "variantOptions": [
+        {
+          "label": "Fixed Workspace",
+          "value": "selectWorkspace"
+        }
+      ],
+      "defaultVariant": "selectWorkspace",
+      "variants": {
+        "selectWorkspace": {
+          "type": "selectRemoteData",
+          "resultVariable": "workspaces",
+          "url": "workspaces",
+          "link": "workspaces",
+          "helperText": "Select an existing workspace.",
+          "icon": true,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        }
+      }
+    }
+  ]
+}

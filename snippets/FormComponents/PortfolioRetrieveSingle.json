@@ -1,0 +1,132 @@
+{
+  "body": [
+    {
+      "id": "portfolio_query",
+      "name": "Portfolio",
+      "entityType": "portfolio",
+      "workspace": "portfolio_query_workspace",
+      "placeholder": "",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 11,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed Portfolio",
+          "value": "selectPortfolio"
+        },
+        {
+          "label": "Latest by Tags",
+          "value": "tagLatest"
+        },
+        {
+          "label": "Latest by Link UID",
+          "value": "linkLatest"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "selectPortfolio",
+      "variants": {
+        "selectPortfolio": {
+          "type": "selectRemoteData",
+          "resultVariable": "portfolios",
+          "url": "portfolios",
+          "link": "portfolios",
+          "helperText": "Select an existing portfolio.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        },
+        "tagLatest": {
+          "type": "tag",
+          "validation": "hashtag",
+          "helperText": "Set portfolio tags. Retrieves the latest portfolio containing the specified tags.",
+          "maxLength": 10,
+          "defaultValues": {
+            "value": []
+          }
+        },
+        "linkLatest": {
+          "type": "metaString",
+          "helperText": "Set portfolio link UID. Retrieves the latest portfolio containing the specified link UID.",
+          "maxLength": 250,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "filterType": [
+            "number",
+            "string",
+            "date"
+          ]
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select a portfolio, a portfolio ID, a link UID or a list of tags from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "portfolio",
+            "string",
+            "list"
+          ],
+          "listFilterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "id": "portfolio_query_workspace",
+      "name": "Workspace",
+      "permission": "workflows.save_source_code",
+      "placeholder": "Using current workspace",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 1,
+      "variantOptions": [
+        {
+          "label": "Fixed Workspace",
+          "value": "selectWorkspace"
+        }
+      ],
+      "defaultVariant": "selectWorkspace",
+      "variants": {
+        "selectWorkspace": {
+          "type": "selectRemoteData",
+          "resultVariable": "workspaces",
+          "url": "workspaces",
+          "link": "workspaces",
+          "helperText": "Select an existing workspace.",
+          "icon": true,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        }
+      }
+    }
+  ]
+}

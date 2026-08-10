@@ -1,0 +1,108 @@
+{
+  "body": {
+    "id": "_VALUE_FIELD_ID_",
+    "name": "_VALUE_FIELD_NAME_",
+    "placeholder": "_VALUE_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Template Text",
+        "value": "metaString"
+      },
+      {
+        "label": "Fixed Number",
+        "value": "number"
+      },
+      {
+        "label": "Fixed Boolean",
+        "value": "selectBoolean"
+      },
+      {
+        "label": "Fixed Date",
+        "value": "date"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "metaString",
+    "variants": {
+      "metaString": {
+        "type": "metaString",
+        "helperText": "Set the _VALUE_FIELD_NAME_ using template text.",
+        "maxLength": 250,
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "filterType": [
+          "number",
+          "string",
+          "date"
+        ]
+      },
+      "number": {
+        "type": "number",
+        "helperText": "Set the _VALUE_FIELD_NAME_ with a fixed number.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "selectBoolean": {
+        "type": "select",
+        "helperText": "Set the _VALUE_FIELD_NAME_ with a fixed boolean.",
+        "defaultValues": {
+          "select": {
+            "label": "True",
+            "value": true
+          }
+        },
+        "options": [
+          {
+            "label": "True",
+            "value": true
+          },
+          {
+            "label": "False",
+            "value": false
+          }
+        ]
+      },
+      "date": {
+        "type": "date",
+        "placeholder": "Set or select the _VALUE_FIELD_NAME_ with a fixed date.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _VALUE_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string",
+          "number",
+          "date",
+          "boolean"
+        ]
+      }
+    }
+  }
+}

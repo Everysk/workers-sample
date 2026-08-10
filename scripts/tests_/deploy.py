@@ -17,10 +17,11 @@ from unittest.mock import patch, mock_open, MagicMock
 from scripts.deploy import (
     find_substring,
     remove_comments,
-    create_form_functions_dict,
     http_request,
     parse_template_files,
-    update_template
+    update_template,
+    get_icon,
+    main
 )
 
 ###############################################################################
@@ -105,39 +106,6 @@ class DeployTestCase(TestCase):
         self.assertEqual(str(context.exception), "expected string or bytes-like object, got 'int'")
 
     ###############################################################################
-    #  Create Form Functions Dict Test Case Implementation
-    ###############################################################################
-    def test_create_form_functions_dict_returns_expected_data(self):
-        functions_code_input = '''
-            def foo():
-                return 'bar'
-            def baz():
-                return 'qux'
-        '''
-        expected_output = {'foo': "\n\n            def foo():\n                return 'bar'\n            def baz():\n                return 'qux'\n       "}
-        result = create_form_functions_dict(functions_code_input)
-
-        self.assertEqual(result, expected_output)
-
-    def test_create_form_functions_dict_with_integer_input_raises_type_error(self):
-        with self.assertRaises(TypeError) as context:
-            create_form_functions_dict(1)
-
-        self.assertEqual(str(context.exception), 'can only concatenate str (not "int") to str')
-
-    def test_create_form_functions_dict_without_functions_returns_empty_dict(self):
-        function_code_input = 'this will make the function return an empty dict'
-        result = create_form_functions_dict(function_code_input)
-
-        self.assertEqual(result, {})
-
-    def test_create_form_functions_dict_without_input_raises_type_error(self):
-        with self.assertRaises(TypeError) as context:
-            create_form_functions_dict()
-
-        self.assertEqual(str(context.exception), "create_form_functions_dict() missing 1 required positional argument: \'functions_text\'")
-
-    ###############################################################################
     #  HTTP Request Test Case Implementation
     ###############################################################################
     def test_http_request_method_returns_expected_data_and_status_code(self):
@@ -211,7 +179,7 @@ class DeployTestCase(TestCase):
             'name': 'test_worker',
             'form_inputs': {'name': 'test_worker'},
             'form_outputs': {'name': 'test_worker'},
-            'form_functions': {},
+            'form_functions': {'source_code': '{"name": "test_worker"}'},
             'description': '{"name": "test_worker"}',
             'script_source': 'UEsFBgAAAAAAAAAAAAAAAAAAAAAAAA==',
             'path_name': 'folder_name',
@@ -230,7 +198,7 @@ class DeployTestCase(TestCase):
 
         expected_error_result = {
             'description': '{}',
-            'form_functions': {},
+            'form_functions': {'source_code': '{}'},
             'form_inputs': {},
             'form_outputs': {},
             'path_name': 'folder_name',
@@ -273,11 +241,84 @@ class DeployTestCase(TestCase):
     def test_update_template_function_with_invalid_new_values_raises_type_error(self):
         mock_json_content = '{"key1": "value1", "key2": "value2"}'
 
-        with patch('builtins.open', mock_open(read_data=mock_json_content)) as mocked_file:
+        with patch('builtins.open', mock_open(read_data=mock_json_content)):
             with self.assertRaises(TypeError) as context:
                 update_template('config.json', 1, ['key1', 'key2'])
-                mocked_file.assert_called_once_with('config.json', 'r+')
-                file_handle = mocked_file()
-                file_handle.truncate.assert_called_once()
 
         self.assertEqual(str(context.exception), "'int' object is not subscriptable")
+
+    ###############################################################################
+    #  Get Icon Test Case Implementation
+    ###############################################################################
+    @patch('os.path.join')
+    @patch('os.listdir', return_value=['icon.svg', 'config.json'])
+    def test_get_icon_with_svg_file_returns_base64_string(self, mock_listdir, mock_join):
+        mock_join.side_effect = lambda *args: '/'.join(args)
+        svg_content = b'<svg></svg>'
+        with patch('builtins.open', mock_open(read_data=svg_content)):
+            result = get_icon({'icon': 'fallback_icon'}, 'workers/my_worker')
+        self.assertIsNotNone(result)
+        self.assertNotEqual(result, 'fallback_icon')
+
+    @patch('os.path.join')
+    @patch('os.listdir', return_value=['config.json'])
+    def test_get_icon_without_svg_falls_back_to_template_icon(self, mock_listdir, mock_join):
+        mock_join.side_effect = lambda *args: '/'.join(args)
+        result = get_icon({'icon': 'fallback_icon'}, 'workers/my_worker')
+        self.assertEqual(result, 'fallback_icon')
+
+    ###############################################################################
+    #  Main Function Test Case Implementation
+    ###############################################################################
+    def test_main_exits_when_wrong_number_of_args(self):
+        with patch('sys.argv', ['script.py']):
+            with self.assertRaises(SystemExit) as ctx:
+                main()
+        self.assertEqual(ctx.exception.code, 1)
+
+    @patch('scripts.deploy.get_folder_names', return_value=[])
+    def test_main_exits_when_no_folders_to_deploy(self, mock_folders):
+        with patch('sys.argv', ['script.py', 'wk_unknown']), \
+             patch('builtins.print'):
+            with self.assertRaises(SystemExit) as ctx:
+                main()
+        self.assertEqual(ctx.exception.code, 1)
+
+    @patch('scripts.deploy.get_folder_names', return_value=['wk_foo'])
+    @patch('scripts.deploy.parse_template_files', return_value={'id': '', 'name': 'Foo Worker'})
+    @patch('scripts.deploy.http_request', return_value=(200, 'Successful request operation.', {'id': 'wrkt_123', 'name': 'Foo Worker', 'updated': '2025-01-01', 'created': '2025-01-01', 'icon': None}))
+    @patch('scripts.deploy.update_template')
+    @patch('scripts.deploy.get_base_url', return_value='https://api.everysk.com/v2/worker_templates')
+    def test_main_deploys_new_worker_with_post(self, mock_url, mock_update, mock_http, mock_parse, mock_folders):
+        with patch('sys.argv', ['script.py', 'wk_foo']), \
+             patch('builtins.print'):
+            main()
+        mock_http.assert_called_once()
+        mock_update.assert_called_once()
+
+    @patch('scripts.deploy.get_folder_names', return_value=['wk_foo'])
+    @patch('scripts.deploy.parse_template_files', return_value={'id': 'wrkt_existing', 'name': 'Foo Worker'})
+    @patch('scripts.deploy.http_request', return_value=(200, 'Successful request operation.', {'id': 'wrkt_existing', 'name': 'Foo Worker', 'icon': None}))
+    @patch('scripts.deploy.update_template')
+    @patch('scripts.deploy.get_base_url', return_value='https://api.everysk.com/v2/worker_templates')
+    def test_main_deploys_existing_worker_with_put(self, mock_url, mock_update, mock_http, mock_parse, mock_folders):
+        with patch('sys.argv', ['script.py', 'wk_foo']), \
+             patch('builtins.print'):
+            main()
+        args = mock_http.call_args
+        self.assertEqual(args[0][1], 'PUT')
+        # A PUT (existing worker) must NOT write back to config.json, so that a
+        # config.json diff means exactly "a new worker was created".
+        mock_update.assert_not_called()
+
+    @patch('scripts.deploy.get_folder_names', return_value=['libs', 'wk_foo'])
+    @patch('scripts.deploy.parse_template_files', return_value={'id': '', 'name': 'Foo Worker'})
+    @patch('scripts.deploy.http_request', return_value=(200, 'OK', {'id': 'wrkt_1', 'name': 'Foo Worker', 'updated': '', 'created': '', 'icon': None}))
+    @patch('scripts.deploy.update_template')
+    @patch('scripts.deploy.get_base_url', return_value='https://api.everysk.com/v2/worker_templates')
+    def test_main_skips_excluded_folders(self, mock_url, mock_update, mock_http, mock_parse, mock_folders):
+        with patch('sys.argv', ['script.py', 'all']), \
+             patch('builtins.print'):
+            main()
+        # only wk_foo should be deployed (libs is excluded)
+        mock_parse.assert_called_once()

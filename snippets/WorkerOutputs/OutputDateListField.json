@@ -1,0 +1,16 @@
+{
+  "body": {
+    "label": "_DATE_LIST_FIELD_LABEL_",
+    "value": "_DATE_LIST_FIELD_VALUE_",
+    "type": "list",
+    "list_item_type": "date",
+    "nested_outputs": [
+      {
+        "label": "_DATE_FIELD_LABEL_",
+        "value": "_DATE_FIELD_VALUE_",
+        "type": "list",
+        "list_item_type": "date"
+      }
+    ]
+  }
+}

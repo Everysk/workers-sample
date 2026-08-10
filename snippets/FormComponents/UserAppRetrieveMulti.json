@@ -1,0 +1,105 @@
+{
+  "body": {
+    "id": "user_apps_query_list",
+    "name": "User Apps(s)",
+    "type": "assembler",
+    "addLabel": "Add App",
+    "min": 1,
+    "max": 10,
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "multiple": true,
+    "mandatory": false,
+    "displayName": false,
+    "withoutMessages": 1,
+    "fields": [
+      {
+        "id": "user_apps_query",
+        "name": "User Apps(s)",
+        "entityType": "user_app",
+        "tipover": "",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 12,
+        "mandatory": true,
+        "displayName": true,
+        "withoutMessages": false,
+        "variantOptions": [
+          {
+            "label": "Fixed User Apps",
+            "value": "selectUserApp"
+          },
+          {
+            "label": "Latest by Tags",
+            "value": "tagLatest"
+          },
+          {
+            "label": "List by Tags",
+            "value": "tagList"
+          },
+          {
+            "label": "Upstream Data",
+            "value": "previousWorkers"
+          }
+        ],
+        "defaultVariant": "selectUserApp",
+        "variants": {
+          "selectUserApp": {
+            "type": "selectRemoteData",
+            "resultVariable": "user_apps",
+            "url": "user_apps",
+            "link": "user_apps",
+            "placeholder": "Select an existing user app",
+            "defaultValues": {
+              "select": {
+                "label": "",
+                "value": ""
+              }
+            }
+          },
+          "tagLatest": {
+            "type": "tag",
+            "validation": "hashtag",
+            "placeholder": "Set user app tags. Retrieves the latest user app containing the specified tags",
+            "maxLength": 10,
+            "defaultValues": {
+              "value": []
+            }
+          },
+          "tagList": {
+            "type": "tag",
+            "validation": "hashtag",
+            "placeholder": "Set user app tags. Retrieves a list of user apps containing the specified tags",
+            "maxLength": 10,
+            "defaultValues": {
+              "value": []
+            }
+          },
+          "previousWorkers": {
+            "type": "nestedAttributes",
+            "placeholder": "Select a user app or a list of user apps from a previous worker",
+            "defaultValues": {
+              "select": {
+                "label": "",
+                "value": ""
+              }
+            },
+            "options": [],
+            "filterType": [
+              "list",
+              "user_app"
+            ],
+            "listFilterType": [
+              "user_app"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

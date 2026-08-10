@@ -1,0 +1,75 @@
+{
+  "body": {
+    "id": "user_app_query",
+    "name": "User App",
+    "entityType": "user_app",
+    "placeholder": "",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed User App",
+        "value": "selectUserApp"
+      },
+      {
+        "label": "Latest by Tags",
+        "value": "tagLatest"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "selectUserApp",
+    "variants": {
+      "selectUserApp": {
+        "type": "selectRemoteData",
+        "resultVariable": "user_apps",
+        "url": "user_apps",
+        "link": "user_apps",
+        "helperText": "Select an existing User App.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        }
+      },
+      "tagLatest": {
+        "type": "tag",
+        "validation": "hashtag",
+        "helperText": "Set user app tags. Retrieves the latest user app containing the specified tags.",
+        "maxLength": 10,
+        "defaultValues": {
+          "value": []
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select a user app, a user app ID or a list of tags from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "user_app",
+          "string",
+          "list"
+        ],
+        "listFilterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

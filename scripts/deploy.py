@@ -85,52 +85,6 @@ def remove_comments(json_str: str) -> str:
     json_str = re.sub(r'/\*.*?\*/', '', json_str, flags=re.DOTALL)
     return json_str
 
-def create_form_functions_dict(functions_text: str) -> dict:
-    """
-    This functions parses a string of text with mulitple Python function definitions and constructs a dictionary where each function name is a key, and its corresponding text its the value.
-    It always searches for functions starting with '\ndef', otherwise it stops the process and returns the dictionary up to that point.
-
-    Args:
-        functions_text (str):
-            A string containing the text of one or more Python function defined by the standard Python syntax.
-
-    Usage:
-        >>> from scripts.deploy import create_form_functions_dict
-        >>> functions_code = '''
-        ... def foo():
-        ...     return 'bar'
-        ...
-        ... def baz():
-        ...     return 'qux'
-        ... '''
-        >>> create_form_functions_dict(functions_code)
-        {'foo': "def foo():\n\treturn 'bar'\n", 'baz': "def baz():\n\treturn 'qux'"}
-
-    Returns:
-        dict:
-            A dictionary where each key represents the functions name and its value is the actual function implementation.
-    """
-    has_functions = True
-    functions_dict = {}
-    functions_text = '\n' + functions_text
-    while has_functions:
-        start_index = find_substring(functions_text, 0, '\ndef') + 1
-        end_index = find_substring(functions_text, start_index, '\ndef') + start_index
-        if end_index - start_index == -1:
-            has_functions = False
-            end_index = len(functions_text) - 1
-
-        function_text = functions_text[start_index:end_index]
-        pattern = r"def\s+(\w+)\(.*?\):"
-        match = re.search(pattern, function_text)
-        if not match:
-            return functions_dict
-        function_name = match.group(1)
-        functions_dict[function_name] = function_text
-        functions_text = functions_text[end_index:]
-
-    return functions_dict
-
 def get_icon(worker_template: dict, worker_path: str) -> str:
     """
     Retrieves an icon for a worker.
@@ -156,10 +110,6 @@ def get_icon(worker_template: dict, worker_path: str) -> str:
         icon_path = os.path.join(base_path, 'icon.svg')
         with open(icon_path, 'rb') as icon_file:
             icon_data = icon_file.read()
-
-            if len(icon_data) > 5000:
-                raise Exception(f"Icon file is too large; must be less than 5KB")
-
             icon_str = base64.b64encode(icon_data).decode('utf-8')
 
     return icon_str or worker_template.get('icon')
@@ -177,7 +127,7 @@ def parse_template_files(worker_path: str, folder_name: str) -> dict:
     constructing a comprehensive dictionary that represents the worker template.
 
     It processes a main config file (`config.json`), input/output specifications (`form_inputs.json` and `form_outputs.json`), and additional Python and Markdown files.
-    It takes all the data from these files and puts into a structured dictionary. If a Python file named `form_functions.py` exists the functions uses the `create_form_functions_dict` to create the dictionary.
+    It takes all the data from these files and puts into a structured dictionary. If a Python file named `form_functions.py` exists it creates the dictionary.
 
     Args:
         worker_path (str):
@@ -196,7 +146,7 @@ def parse_template_files(worker_path: str, folder_name: str) -> dict:
     worker_template.update({
         'form_inputs': read_file(os.path.join(config_path, 'form_inputs.json'), is_remove_comments=True),
         'form_outputs': read_file(os.path.join(config_path, 'form_outputs.json'), is_remove_comments=True),
-        'form_functions': create_form_functions_dict(read_file(os.path.join(config_path, 'form_functions.py'), is_json=False)),
+        'form_functions': {'source_code': read_file(os.path.join(config_path, 'form_functions.py'), is_json=False)},
         'description': read_file(os.path.join(worker_path, 'README.md'), is_remove_comments=False, is_json=False),
         'script_source': zip_directory_to_str([worker_path, 'workers/libs'], path_name_list=[folder_name, 'libs'], ignore_files=['config.json'], ignore_roots=['**/tests*']),
         'icon': get_icon(worker_template, worker_path),
@@ -290,18 +240,22 @@ def main():
         >>> python deploy.py <folder_name>
     """
     if len(sys.argv) != 2:
-        print('Enter the "folder name" of the worker or "all" for all workers.')
+        print('Invalid argument. Usage: run.py deploy <folder_name|all>')
         sys.exit(1)
 
     input_string = sys.argv[1]
 
     folder_names = get_folder_names(input_string)
 
-    if folder_names == []:
-        print('Invalid argument, write your "folder name" or "all" to select all folders')
+    if not folder_names:
+        print(f'No matching worker folder found for "{input_string}".')
         sys.exit(1)
 
+    # 'libs' holds shared code, it is not a worker so it must not be deployed.
+    excluded_folders = {'libs'}
     for folder_name in folder_names:
+        if folder_name in excluded_folders:
+            continue
 
         worker_path = os.path.join(BASE_DIR, folder_name)
 
@@ -317,10 +271,11 @@ def main():
 
         template_path = os.path.join(worker_path, 'config', 'config.json')
         keys = []
+        # Only a newly created worker (POST) writes anything back: the platform-minted
+        # id plus its timestamps and icon. Updates (PUT) must NOT touch config.json, so
+        # that a config.json diff means exactly "a new worker was created".
         if method == 'POST' and status_code == 200:
             keys = ['id', 'updated', 'created', 'icon']
-        elif method == 'PUT' and status_code == 200:
-            keys = ['updated', 'icon']
 
         if keys:
             update_template(template_path, new_worker_template, keys)
