@@ -1,0 +1,53 @@
+{
+  "body": {
+    "id": "_ASK_FOR_INPUTS_NUMBER_FIELD_ID_",
+    "name": "_ASK_FOR_INPUTS_NUMBER_FIELD_NAME_",
+    "placeholder": "_ASK_FOR_INPUTS_NUMBER_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Number",
+        "value": "number"
+      },
+      {
+        "label": "Ask For Inputs",
+        "value": "askInput"
+      }
+    ],
+    "defaultVariant": "number",
+    "variants": {
+      "number": {
+        "type": "number",
+        "helperText": "Set the _ASK_FOR_INPUTS_NUMBER_FIELD_NAME_ with a fixed number.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "askInput": {
+        "type": "askInput",
+        "helperText": "Set the _ASK_FOR_INPUTS_NUMBER_FIELD_NAME_ with a fixed number.",
+        "freeSolo": true,
+        "defaultValues": {
+          "select": {
+            "label": "Number Input",
+            "value": "Number Input"
+          }
+        },
+        "options": [
+          {
+            "label": "Number Input",
+            "value": "Number Input"
+          }
+        ]
+      }
+    }
+  }
+}

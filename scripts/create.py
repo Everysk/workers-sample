@@ -1,3 +1,12 @@
+###############################################################################
+#
+# (C) Copyright 2025 EVERYSK TECHNOLOGIES
+#
+# This is an unpublished work containing confidential and proprietary
+# information of EVERYSK TECHNOLOGIES. Disclosure, use, or reproduction
+# without authorization of EVERYSK TECHNOLOGIES is prohibited.
+#
+###############################################################################
 import os
 import shutil
 import sys
@@ -20,12 +29,12 @@ def create_folder_structure(worker_name):
                 shutil.copytree(s, d, dirs_exist_ok=True)
             else:
                 shutil.copy2(s, d)
-        print(f"Folder '{folder_name}' created with config.json, inputs.json, and outputs.json files.")
+        print(f"Folder '{folder_name}' created with config.json, form_inputs.json, and form_outputs.json files.")
     else:
         print("Error: Template directory does not exist.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         print("Invalid argument. Usage: run.py create <worker_name>")
     else:
-        create_folder_structure(sys.argv[2])
+        create_folder_structure(sys.argv[1])

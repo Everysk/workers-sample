@@ -1,0 +1,55 @@
+{
+  "body": {
+    "id": "content_type",
+    "name": "Content-Type",
+    "placeholder": "",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Value",
+        "value": "select"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "select",
+    "variants": {
+      "select": {
+        "type": "select",
+        "optionsSource": "fileContentTypes",
+        "helperText": "Select a supported file content-type.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": []
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select a file content-type from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

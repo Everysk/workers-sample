@@ -1,0 +1,564 @@
+{
+  "body": [
+    {
+      "id": "custom_index_output",
+      "name": "Custom Index",
+      "type": "assembler",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 12,
+      "mandatory": false,
+      "displayName": true,
+      "withoutMessages": false,
+      "fields": [
+        {
+          "id": "id",
+          "name": "Symbol",
+          "placeholder": "",
+          "tipover": "",
+          "paddingLeft": 4,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 6,
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "label": "Template Text",
+              "value": "metaString"
+            },
+            {
+              "label": "Upstream Data",
+              "value": "previousWorkers"
+            }
+          ],
+          "defaultVariant": "metaString",
+          "variants": {
+            "metaString": {
+              "type": "metaString",
+              "helperText": "Set the custom index symbol using template text.",
+              "maxLength": 250,
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "filterType": [
+                "number",
+                "string",
+                "date"
+              ]
+            },
+            "previousWorkers": {
+              "type": "nestedAttributes",
+              "helperText": "Set the custom index symbol from a previous worker.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "options": [],
+              "filterType": [
+                "string"
+              ]
+            }
+          }
+        },
+        {
+          "id": "name",
+          "name": "Name",
+          "placeholder": "",
+          "tipover": "",
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 6,
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "label": "Template Text",
+              "value": "metaString"
+            },
+            {
+              "label": "Upstream Data",
+              "value": "previousWorkers"
+            }
+          ],
+          "defaultVariant": "metaString",
+          "variants": {
+            "metaString": {
+              "type": "metaString",
+              "helperText": "Set the custom index name using template text.",
+              "maxLength": 250,
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "filterType": [
+                "number",
+                "string",
+                "date"
+              ]
+            },
+            "previousWorkers": {
+              "type": "nestedAttributes",
+              "helperText": "Set the custom index name from a previous worker.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "options": [],
+              "filterType": [
+                "string"
+              ]
+            }
+          }
+        },
+        {
+          "id": "currency",
+          "name": "Currency",
+          "placeholder": "",
+          "tipover": "",
+          "paddingLeft": 4,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 6,
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "label": "Fixed Currency",
+              "value": "select"
+            },
+            {
+              "label": "Upstream Data",
+              "value": "previousWorkers"
+            }
+          ],
+          "defaultVariant": "select",
+          "variants": {
+            "select": {
+              "type": "select",
+              "optionsSource": "currencies",
+              "helperText": "Select the custom index currency.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              }
+            },
+            "previousWorkers": {
+              "type": "nestedAttributes",
+              "helperText": "Select the custom index currency from a previous worker.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "options": [],
+              "filterType": [
+                "string"
+              ]
+            }
+          }
+        },
+        {
+          "id": "periodicity",
+          "name": "Periodicity",
+          "placeholder": "",
+          "tipover": "",
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 6,
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "value": "select",
+              "label": "Fixed Input"
+            },
+            {
+              "label": "Upstream Data",
+              "value": "previousWorkers"
+            }
+          ],
+          "defaultVariant": "select",
+          "variants": {
+            "select": {
+              "type": "select",
+              "helperText": "Select the periodicity from the options.",
+              "defaultValues": {
+                "select": {
+                  "value": "D",
+                  "label": "Daily"
+                }
+              },
+              "options": [
+                {
+                  "value": "D",
+                  "label": "Daily"
+                },
+                {
+                  "value": "M",
+                  "label": "Monthly"
+                }
+              ]
+            },
+            "previousWorkers": {
+              "type": "nestedAttributes",
+              "helperText": "Select the periodicity from a previous worker.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "options": [],
+              "filterType": [
+                "string"
+              ]
+            }
+          }
+        },
+        {
+          "id": "data_type",
+          "name": "Data Type",
+          "placeholder": "",
+          "tipover": "",
+          "paddingLeft": 4,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 6,
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "value": "select",
+              "label": "Fixed Input"
+            },
+            {
+              "label": "Upstream Data",
+              "value": "previousWorkers"
+            }
+          ],
+          "defaultVariant": "select",
+          "variants": {
+            "select": {
+              "type": "select",
+              "helperText": "Select the data type from the options.",
+              "defaultValues": {
+                "select": {
+                  "value": "PRICE",
+                  "label": "Price"
+                }
+              },
+              "options": [
+                {
+                  "value": "PRICE",
+                  "label": "Price"
+                },
+                {
+                  "value": "RETURN",
+                  "label": "Return (Decimal)"
+                },
+                {
+                  "value": "RETURN_100",
+                  "label": "Return (Percentual)"
+                }
+              ]
+            },
+            "previousWorkers": {
+              "type": "nestedAttributes",
+              "helperText": "Select the data type from a previous worker.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "options": [],
+              "filterType": [
+                "string"
+              ]
+            }
+          }
+        },
+        {
+          "id": "base_price",
+          "name": "Base Price",
+          "placeholder": "",
+          "tipover": "",
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 6,
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "label": "Fixed Number",
+              "value": "number"
+            },
+            {
+              "label": "Upstream Data",
+              "value": "previousWorkers"
+            }
+          ],
+          "defaultVariant": "number",
+          "variants": {
+            "number": {
+              "type": "number",
+              "helperText": "Set the base price with a fixed number.",
+              "defaultValues": {
+                "value": ""
+              }
+            },
+            "previousWorkers": {
+              "type": "nestedAttributes",
+              "helperText": "Select the base price from a previous worker.",
+              "defaultValues": {
+                "select": {
+                  "label": "",
+                  "value": ""
+                }
+              },
+              "options": [],
+              "filterType": [
+                "number"
+              ]
+            }
+          }
+        },
+        {
+          "id": "tags",
+          "type": "assembler",
+          "addLabel": "Add Tag",
+          "min": 1,
+          "max": 10,
+          "paddingLeft": 4,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 12,
+          "multiple": true,
+          "mandatory": false,
+          "displayName": true,
+          "withoutMessages": 1,
+          "fields": [
+            {
+              "id": "tag",
+              "name": "Tags",
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+              "paddingBottom": 0,
+              "gridSizeMd": 12,
+              "variantOptions": [
+                {
+                  "label": "Fixed Tags",
+                  "value": "tag"
+                },
+                {
+                  "label": "Upstream Data",
+                  "value": "previousWorkers"
+                }
+              ],
+              "defaultVariant": "tag",
+              "variants": {
+                "tag": {
+                  "type": "tag",
+                  "validation": "hashtag",
+                  "placeholder": "Add multiple tags separating them with spaces",
+                  "defaultValues": {
+                    "value": []
+                  }
+                },
+                "previousWorkers": {
+                  "type": "nestedAttributes",
+                  "placeholder": "Select the tags from a previous worker",
+                  "defaultValues": {
+                    "select": {
+                      "label": "",
+                      "value": ""
+                    }
+                  },
+                  "options": [],
+                  "filterType": [
+                    "list",
+                    "string",
+                    "date",
+                    "number"
+                  ],
+                  "listFilterType": [
+                    "string",
+                    "date",
+                    "number"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "storage_settings",
+      "name": "Storage Settings",
+      "type": "assembler",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 12,
+      "mandatory": false,
+      "displayName": false,
+      "withoutMessages": false,
+      "fields": [
+        {
+          "id": "storage_mode",
+          "name": "Storage Mode",
+          "placeholder": "Select the storage mode",
+          "helperText": "Select an option to storage the entity.",
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingBottom": 0,
+          "paddingTop": 0,
+          "gridSizeMd": "get_storage_mode_grid_size",
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "label": "Fixed Value",
+              "value": "select"
+            }
+          ],
+          "defaultVariant": "select",
+          "variants": {
+            "select": {
+              "type": "select",
+              "defaultValues": {
+                "select": {
+                  "value": "create",
+                  "label": "Create"
+                }
+              },
+              "options": [
+                {
+                  "value": "transient",
+                  "label": "Transient"
+                },
+                {
+                  "value": "create",
+                  "label": "Create"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "projection",
+          "name": "Projection",
+          "placeholder": "",
+          "tipover": "",
+          "isVisibleFunction": "is_storage_mode_create",
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 6,
+          "mandatory": true,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "value": "select",
+              "label": "Fixed Input"
+            }
+          ],
+          "defaultVariant": "select",
+          "variants": {
+            "select": {
+              "type": "select",
+              "helperText": "Select which entity's attributes will be returned.",
+              "defaultValues": {
+                "select": {
+                  "value": "without_data",
+                  "label": "Without Data"
+                }
+              },
+              "options": [
+                {
+                  "value": "id_only",
+                  "label": "Symbol Only"
+                },
+                {
+                  "value": "without_data",
+                  "label": "Without Data"
+                },
+                {
+                  "value": "whole",
+                  "label": "Whole Custom Index"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "validate",
+          "name": "Validate the entity parameters",
+          "isVisibleFunction": "is_storage_mode_transient",
+          "helperText": "",
+          "tipover": "",
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "paddingBottom": 0,
+          "gridSizeMd": 12,
+          "displayName": true,
+          "withoutMessages": false,
+          "variantOptions": [
+            {
+              "label": "User Input",
+              "value": "boolean"
+            }
+          ],
+          "defaultVariant": "boolean",
+          "variants": {
+            "boolean": {
+              "inputType": "checkbox",
+              "type": "boolean",
+              "defaultValues": {
+                "value": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

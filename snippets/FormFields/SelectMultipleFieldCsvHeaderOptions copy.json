@@ -1,0 +1,59 @@
+{
+  "body": {
+    "id": "_SELECT_MULTIPLE_FIELD_ID_",
+    "name": "_SELECT_MULTIPLE_FIELD_NAME_",
+    "placeholder": "_SELECT_MULTIPLE_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Input",
+        "value": "selectMultiple"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "selectMultiple",
+    "variants": {
+      "selectMultiple": {
+        "freeSolo": false,
+        "sort": false,
+        "type": "selectMultiple",
+        "optionsType": "csvHeaders",
+        "optionsPath": "path.to.csv.file",
+        "optionsDefault": [],
+        "helperText": "Select the _SELECT_MULTIPLE_FIELD_NAME_ from the options.",
+        "defaultValues": {
+          "select": []
+        },
+        "options": []
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _SELECT_MULTIPLE_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "list"
+        ],
+        "listFilterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

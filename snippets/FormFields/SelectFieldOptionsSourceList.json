@@ -1,0 +1,54 @@
+{
+  "body": {
+    "id": "_SELECT_FIELD_ID_",
+    "name": "_SELECT_FIELD_NAME_",
+    "placeholder": "_SELECT_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Input",
+        "value": "select"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "select",
+    "variants": {
+      "select": {
+        "type": "select",
+        "optionsSource": "_INPUT_SELECT_LIST_KEY_",
+        "helperText": "Set the _SELECT_FIELD_NAME_.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _SELECT_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

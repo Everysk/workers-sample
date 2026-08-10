@@ -1,0 +1,130 @@
+{
+  "body": {
+    "FILES": [
+      {
+        "value": "files",
+        "label": "Files",
+        "type": "list",
+        "list_item_type": "file",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "link_uid",
+            "label": "Link UID",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "date",
+            "label": "Date",
+            "type": "list",
+            "list_item_type": "date"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "list"
+          },
+          {
+            "value": "workspace",
+            "label": "Workspace",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "content_type",
+            "label": "Content Type",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "data",
+            "label": "Data",
+            "type": "list",
+            "list_item_type": "string"
+          }
+        ]
+      }
+    ],
+    "FILES_WITHOUT_DATA": [
+      {
+        "value": "files",
+        "label": "Files",
+        "type": "list",
+        "list_item_type": "file",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "name",
+            "label": "Name",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "link_uid",
+            "label": "Link UID",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "date",
+            "label": "Date",
+            "type": "list",
+            "list_item_type": "date"
+          },
+          {
+            "value": "tags",
+            "label": "Tags",
+            "type": "list",
+            "list_item_type": "list"
+          },
+          {
+            "value": "workspace",
+            "label": "Workspace",
+            "type": "list",
+            "list_item_type": "string"
+          },
+          {
+            "value": "content_type",
+            "label": "Content Type",
+            "type": "list",
+            "list_item_type": "string"
+          }
+        ]
+      }
+    ],
+    "FILES_ID_ONLY": [
+      {
+        "value": "files",
+        "label": "Files",
+        "type": "list",
+        "list_item_type": "file",
+        "nested_outputs": [
+          {
+            "value": "id",
+            "label": "ID",
+            "type": "list",
+            "list_item_type": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

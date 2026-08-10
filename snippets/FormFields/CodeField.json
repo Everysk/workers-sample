@@ -1,0 +1,51 @@
+{
+    "body": {
+      "id": "_CODE_FIELD_ID_",
+      "name": "_CODE_FIELD_NAME_",
+      "placeholder": "_CODE_FIELD_PLACEHOLDER_",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 12,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Code",
+          "value": "code"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "code",
+      "variants": {
+        "code": {
+          "type": "code",
+          "language": "_LANGUAGE_",
+          "helperText": "Set the _CODE_FIELD_NAME_ using template text.",
+          "defaultValues": {
+            "value": ""
+          }
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select the _CODE_FIELD_NAME_ from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "string"
+          ]
+        }
+      }
+    }
+  }

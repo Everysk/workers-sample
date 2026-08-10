@@ -1,0 +1,41 @@
+{
+  "body": {
+    "value": "private_security",
+    "label": "Private Security",
+    "type": "private_security",
+    "nested_outputs": [
+      {
+        "value": "symbol",
+        "label": "Symbol",
+        "type": "string"
+      },
+      {
+        "value": "name",
+        "label": "Name",
+        "type": "string"
+      },
+      {
+        "value": "currency",
+        "label": "Currency",
+        "type": "string"
+      },
+      {
+        "value": "type",
+        "label": "Type",
+        "type": "string"
+      },
+      {
+        "value": "tags",
+        "label": "Tags",
+        "type": "list",
+        "list_item_type": "string"
+      },
+      {
+        "value": "data",
+        "label": "Data",
+        "type": "object",
+        "nested_outputs": []
+      }
+    ]
+  }
+}

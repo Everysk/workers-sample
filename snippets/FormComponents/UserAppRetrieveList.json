@@ -1,0 +1,57 @@
+{
+  "body": {
+    "id": "user_apps_query",
+    "name": "User App(s)",
+    "entityType": "user_app",
+    "placeholder": "",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "List by Tags",
+        "value": "tagList"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "tagList",
+    "variants": {
+      "tagList": {
+        "type": "tag",
+        "validation": "hashtag",
+        "helperText": "Set user app tags. Retrieves a list of user apps containing the specified tags.",
+        "maxLength": 10,
+        "defaultValues": {
+          "value": []
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select a list of user apps or a list of tags from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "list"
+        ],
+        "listFilterType": [
+          "user_app",
+          "string"
+        ]
+      }
+    }
+  }
+}

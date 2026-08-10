@@ -1,0 +1,17 @@
+{
+  "body": {
+    "label": "_OBJECT_LIST_FIELD_LABEL_",
+    "value": "_OBJECT_LIST_FIELD_VALUE_",
+    "type": "list",
+    "list_item_type": "object",
+    "nested_outputs": [
+      {
+        "label": "_OBJECT_FIELD_LABEL_",
+        "value": "_OBJECT_FIELD_VALUE_",
+        "type": "list",
+        "list_item_type": "object",
+        "nested_outputs": []
+      }
+    ]
+  }
+}

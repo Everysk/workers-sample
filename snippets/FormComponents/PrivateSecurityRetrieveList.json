@@ -1,0 +1,57 @@
+{
+  "body":  {
+    "id": "private_securities_query",
+    "name": "Private Security(es)",
+    "entityType": "private_security",
+    "placeholder": "",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 11,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "List by Tags",
+        "value": "tagList"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "tagList",
+    "variants": {
+      "tagList": {
+        "type": "tag",
+        "validation": "hashtag",
+        "helperText": "Set private security tags. Retrieves a list of private securities containing the specified tags.",
+        "maxLength": 10,
+        "defaultValues": {
+          "value": []
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select a list of private securities or a list of tags from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "list"
+        ],
+        "listFilterType": [
+          "private_security",
+          "string"
+        ]
+      }
+    }
+  }
+}

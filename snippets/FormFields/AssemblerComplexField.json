@@ -1,0 +1,24 @@
+{
+  "body": {
+    "id": "_ASSEMBLER_COMPLEX_FIELD_ID_",
+    "name": "_ASSEMBLER_COMPLEX_FIELD_NAME_",
+    "type": "assembler",
+    "addLabel": "_ADD_FIELD_",
+    "rules": "complex",
+    "complexLabelFunction": "_COMPLEX_LABEL_FUNCTION",
+    "min": 1,
+    "max": 10,
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "multiple": true,
+    "mandatory": true,
+    "displayName": true,
+    "copyLine": true,
+    "dragAndDrop": true,
+    "withoutMessages": 1,
+    "fields": []
+  }
+}

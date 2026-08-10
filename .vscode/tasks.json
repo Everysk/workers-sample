@@ -7,7 +7,7 @@
             "label": "Everysk - Create Folder Structure",
             "type": "shell",
             "command": "python",
-            "args": ["${workspaceFolder}/scripts/create.py", "create", "${input:folderName}" ],
+            "args": ["${workspaceFolder}/run.py", "create", "${input:workerName}" ],
             "presentation": {
                 "reveal": "always"
             },
@@ -17,7 +17,7 @@
             "label": "Everysk - DEBUG Worker",
             "type": "shell",
             "command": "python",
-            "args": ["${workspaceFolder}/run.py", "debug", "${input:folderName}" ],
+            "args": ["${workspaceFolder}/run.py", "debug", "${input:folderName}", "${input:sampleArgsKey}" ],
             "presentation": {
                 "reveal": "always"
             },
@@ -37,7 +37,7 @@
             "label": "Everysk - DELETE Worker",
             "type": "shell",
             "command": "python",
-            "args": ["${workspaceFolder}/run.py", "delete", "${input:folderName}" ],
+            "args": ["${workspaceFolder}/run.py", "delete", "${input:templateId}" ],
             "presentation": {
                 "reveal": "always"
             },
@@ -79,6 +79,24 @@
             "id": "folderName",
             "type": "promptString",
             "description": "Folder name of the worker template.",
+            "default": ""
+        },
+        {
+            "id": "workerName",
+            "type": "promptString",
+            "description": "Name of the new worker (the wk_ prefix is added automatically).",
+            "default": ""
+        },
+        {
+            "id": "sampleArgsKey",
+            "type": "promptString",
+            "description": "Key from the worker's sample_args.json to use as input.",
+            "default": ""
+        },
+        {
+            "id": "templateId",
+            "type": "promptString",
+            "description": "Worker template id (or 'all' to delete every deployed worker not present locally).",
             "default": ""
         },
     ]

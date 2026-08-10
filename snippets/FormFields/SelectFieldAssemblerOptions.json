@@ -1,0 +1,58 @@
+{
+  "body": {
+    "id": "_SELECT_FIELD_ID_",
+    "name": "_SELECT_FIELD_NAME_",
+    "placeholder": "_SELECT_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Input",
+        "value": "select"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "select",
+    "variants": {
+      "select": {
+        "freeSolo": false,
+        "type": "select",
+        "optionsType": "assemblerMultiple",
+        "optionsPath": "path.to.assembler.multiple.key",
+        "optionsDefault": [],
+        "helperText": "Select the _SELECT_FIELD_NAME_ from the options.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": []
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _SELECT_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

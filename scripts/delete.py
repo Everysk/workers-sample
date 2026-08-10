@@ -94,7 +94,7 @@ def main():
             - Processes a specific worker template by its ID.
     """
     if len(sys.argv) != 2:
-        print('Enter the "template id" of the worker or "all" for all workers.')
+        print('Invalid argument. Usage: run.py delete <template_id|all>')
         sys.exit(1)
 
     input_string = sys.argv[1]

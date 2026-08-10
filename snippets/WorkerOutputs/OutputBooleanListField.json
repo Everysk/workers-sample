@@ -1,0 +1,16 @@
+{
+  "body": {
+    "label": "_BOOLEAN_LIST_FIELD_LABEL_",
+    "value": "_BOOLEAN_LIST_FIELD_VALUE_",
+    "type": "list",
+    "list_item_type": "boolean",
+    "nested_outputs": [
+      {
+        "label": "_BOOLEAN_FIELD_LABEL_",
+        "value": "_BOOLEAN_FIELD_VALUE_",
+        "type": "list",
+        "list_item_type": "boolean"
+      }
+    ]
+  }
+}

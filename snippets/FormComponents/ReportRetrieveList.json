@@ -1,0 +1,114 @@
+{
+  "body": [
+    {
+      "id": "reports_query",
+      "name": "Report(s)",
+      "entityType": "report",
+      "workspace": "reports_query_workspace",
+      "placeholder": "",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 11,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "List by Tags",
+          "value": "tagList"
+        },
+        {
+          "label": "List by Link UID",
+          "value": "linkList"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "tagList",
+      "variants": {
+        "tagList": {
+          "type": "tag",
+          "validation": "hashtag",
+          "helperText": "Set report tags. Retrieves a list of reports containing the specified tags.",
+          "maxLength": 10,
+          "defaultValues": {
+            "value": []
+          }
+        },
+        "linkList": {
+          "type": "metaString",
+          "helperText": "Set report link UID. Retrieves list of reports containing the specified link UID.",
+          "maxLength": 250,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "filterType": [
+            "number",
+            "string",
+            "date"
+          ]
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select a report or a list of reports from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "list",
+            "report"
+          ],
+          "listFilterType": [
+            "report"
+          ]
+        }
+      }
+    },
+    {
+      "id": "reports_query_workspace",
+      "name": "Workspace",
+      "permission": "workflows.save_source_code",
+      "placeholder": "Using current workspace",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 1,
+      "variantOptions": [
+        {
+          "label": "Fixed Workspace",
+          "value": "selectWorkspace"
+        }
+      ],
+      "defaultVariant": "selectWorkspace",
+      "variants": {
+        "selectWorkspace": {
+          "type": "selectRemoteData",
+          "resultVariable": "workspaces",
+          "url": "workspaces",
+          "link": "workspaces",
+          "helperText": "Select an existing workspace.",
+          "icon": true,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        }
+      }
+    }
+  ]
+}

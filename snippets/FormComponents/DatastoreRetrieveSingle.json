@@ -1,0 +1,132 @@
+{
+  "body": [
+    {
+      "id": "datastore_query",
+      "name": "Datastore",
+      "entityType": "datastore",
+      "workspace": "datastore_query_workspace",
+      "placeholder": "",
+      "tipover": "",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 11,
+      "mandatory": true,
+      "displayName": true,
+      "withoutMessages": false,
+      "variantOptions": [
+        {
+          "label": "Fixed Datastore",
+          "value": "selectDatastore"
+        },
+        {
+          "label": "Latest by Tags",
+          "value": "tagLatest"
+        },
+        {
+          "label": "Latest by Link UID",
+          "value": "linkLatest"
+        },
+        {
+          "label": "Upstream Data",
+          "value": "previousWorkers"
+        }
+      ],
+      "defaultVariant": "selectDatastore",
+      "variants": {
+        "selectDatastore": {
+          "type": "selectRemoteData",
+          "resultVariable": "datastores",
+          "url": "datastores",
+          "link": "datastores",
+          "helperText": "Select an existing datastore.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        },
+        "tagLatest": {
+          "type": "tag",
+          "validation": "hashtag",
+          "helperText": "Set datastore tags. Retrieves the latest datastore containing the specified tags.",
+          "maxLength": 10,
+          "defaultValues": {
+            "value": []
+          }
+        },
+        "linkLatest": {
+          "type": "metaString",
+          "helperText": "Set datastore link UID. Retrieves the latest datastore containing the specified link UID.",
+          "maxLength": 250,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "filterType": [
+            "number",
+            "string",
+            "date"
+          ]
+        },
+        "previousWorkers": {
+          "type": "nestedAttributes",
+          "helperText": "Select a datastore, a datastore ID, a link UID or a list of tags from a previous worker.",
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          },
+          "options": [],
+          "filterType": [
+            "datastore",
+            "string",
+            "list"
+          ],
+          "listFilterType": [
+            "string"
+          ]
+        }
+      }
+    },
+    {
+      "id": "datastore_query_workspace",
+      "name": "Workspace",
+      "permission": "workflows.save_source_code",
+      "placeholder": "Using current workspace",
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "paddingBottom": 0,
+      "gridSizeMd": 1,
+      "variantOptions": [
+        {
+          "label": "Fixed Workspace",
+          "value": "selectWorkspace"
+        }
+      ],
+      "defaultVariant": "selectWorkspace",
+      "variants": {
+        "selectWorkspace": {
+          "type": "selectRemoteData",
+          "resultVariable": "workspaces",
+          "url": "workspaces",
+          "link": "workspaces",
+          "helperText": "Select an existing workspace.",
+          "icon": true,
+          "defaultValues": {
+            "select": {
+              "label": "",
+              "value": ""
+            }
+          }
+        }
+      }
+    }
+  ]
+}

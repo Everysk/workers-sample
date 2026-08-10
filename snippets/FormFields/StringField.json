@@ -1,0 +1,53 @@
+{
+  "description": "Basic string input field.",
+  "body": {
+    "id": "_STRING_FIELD_ID_",
+    "name": "_STRING_FIELD_NAME_",
+    "placeholder": "_STRING_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "multiline": false,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Text",
+        "value": "string"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "string",
+    "variants": {
+      "string": {
+        "type": "string",
+        "helperText": "Set the _STRING_FIELD_NAME_ using a fixed text.",
+        "maxLength": 250,
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _STRING_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

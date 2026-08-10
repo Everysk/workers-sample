@@ -1,0 +1,74 @@
+{
+  "body": {
+    "REPORT": {
+      "value": "report",
+      "label": "Report",
+      "type": "report",
+      "nested_outputs": [
+        {
+          "value": "id",
+          "label": "ID",
+          "type": "string"
+        },
+        {
+          "value": "name",
+          "label": "Name",
+          "type": "string"
+        },
+        {
+          "value": "workspace",
+          "label": "Workspace",
+          "type": "string"
+        },
+        {
+          "value": "date",
+          "label": "Date",
+          "type": "date"
+        },
+        {
+          "value": "link_uid",
+          "label": "Link UID",
+          "type": "string"
+        },
+        {
+          "value": "tags",
+          "label": "Tags",
+          "type": "list",
+          "list_item_type": "string"
+        },
+        {
+          "value": "url",
+          "label": "URL",
+          "type": "string"
+        },
+        {
+          "value": "shared_url",
+          "label": "Shared URL",
+          "type": "string"
+        },
+        {
+          "value": "absolute_url",
+          "label": "Absolut URL",
+          "type": "string"
+        },
+        {
+          "value": "relative_url",
+          "label": "Relative URL",
+          "type": "string"
+        }
+      ]
+    },
+    "REPORT_ID_ONLY": {
+      "value": "report",
+      "label": "Report",
+      "type": "report",
+      "nested_outputs": [
+        {
+          "value": "id",
+          "label": "ID",
+          "type": "string"
+        }
+      ]
+    }
+  }
+}

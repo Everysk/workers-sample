@@ -1,0 +1,12 @@
+{
+  "body": [
+    [
+      {
+        "id": "_FORM_TAB_ID_",
+        "name": "_FORM_TAB_NAME_",
+        "type": "assembler",
+        "fields": []
+      }
+    ]
+  ]
+}

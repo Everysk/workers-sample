@@ -1,0 +1,105 @@
+{
+  "body": {
+    "id": "private_securities_query_list",
+    "name": "Private Security(es)",
+    "type": "assembler",
+    "addLabel": "Add Private Security",
+    "min": 1,
+    "max": 10,
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "multiple": true,
+    "mandatory": false,
+    "displayName": false,
+    "withoutMessages": 1,
+    "fields": [
+      {
+        "id": "private_securities_query",
+        "name": "Private Security(es)",
+        "entityType": "private_security",
+        "tipover": "",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "gridSizeMd": 12,
+        "mandatory": true,
+        "displayName": true,
+        "withoutMessages": false,
+        "variantOptions": [
+          {
+            "label": "Fixed Private Security",
+            "value": "selectPrivateSecurity"
+          },
+          {
+            "label": "Latest by Tags",
+            "value": "tagLatest"
+          },
+          {
+            "label": "List by Tags",
+            "value": "tagList"
+          },
+          {
+            "label": "Upstream Data",
+            "value": "previousWorkers"
+          }
+        ],
+        "defaultVariant": "selectPrivateSecurity",
+        "variants": {
+          "selectPrivateSecurity": {
+            "type": "selectRemoteData",
+            "resultVariable": "private_securities",
+            "url": "private_securities",
+            "link": "private_securities",
+            "placeholder": "Select an existing private security",
+            "defaultValues": {
+              "select": {
+                "label": "",
+                "value": ""
+              }
+            }
+          },
+          "tagLatest": {
+            "type": "tag",
+            "validation": "hashtag",
+            "placeholder": "Set private security tags. Retrieves the latest private security containing the specified tags",
+            "maxLength": 10,
+            "defaultValues": {
+              "value": []
+            }
+          },
+          "tagList": {
+            "type": "tag",
+            "validation": "hashtag",
+            "placeholder": "Set private security tags. Retrieves a list of private securities containing the specified tags",
+            "maxLength": 10,
+            "defaultValues": {
+              "value": []
+            }
+          },
+          "previousWorkers": {
+            "type": "nestedAttributes",
+            "placeholder": "Select a private security or a list of private securities from a previous worker",
+            "defaultValues": {
+              "select": {
+                "label": "",
+                "value": ""
+              }
+            },
+            "options": [],
+            "filterType": [
+              "private_security",
+              "list"
+            ],
+            "listFilterType": [
+              "private_security"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "body": {
+    "id": "_ASK_FOR_INPUTS_DATE_FIELD_ID_",
+    "name": "_ASK_FOR_INPUTS_DATE_FIELD_NAME_",
+    "placeholder": "_ASK_FOR_INPUTS_DATE_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Date",
+        "value": "date"
+      },
+      {
+        "label": "Ask For Inputs",
+        "value": "askInput"
+      }
+    ],
+    "defaultVariant": "date",
+    "variants": {
+      "date": {
+        "type": "date",
+        "helperText": "Set or select the _ASK_FOR_INPUTS_DATE_FIELD_NAME_.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "askInput": {
+        "type": "askInput",
+        "helperText": "Set or select the _ASK_FOR_INPUTS_DATE_FIELD_NAME_.",
+        "freeSolo": true,
+        "defaultValues": {
+          "select": {
+            "label": "Date Input",
+            "value": "Date Input"
+          }
+        },
+        "options": [
+          {
+            "label": "Date Input",
+            "value": "Date Input"
+          }
+        ]
+      }
+    }
+  }
+}

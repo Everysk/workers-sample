@@ -1,0 +1,16 @@
+{
+  "body": {
+    "id": "_ASSEMBLER_FIELD_ID_",
+    "name": "_ASSEMBLER_FIELD_NAME_",
+    "type": "assembler",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "fields": []
+  }
+}

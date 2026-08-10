@@ -1,0 +1,64 @@
+{
+  "body": {
+    "id": "_BOOLEAN_FIELD_ID_",
+    "name": "_BOOLEAN_FIELD_NAME_",
+    "placeholder": "_BOOLEAN_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Boolean",
+        "value": "selectBoolean"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "selectBoolean",
+    "variants": {
+      "selectBoolean": {
+        "freeSolo": false,
+        "type": "select",
+        "helperText": "Set the _BOOLEAN_FIELD_NAME_ with a fixed boolean.",
+        "defaultValues": {
+          "select": {
+            "label": "True",
+            "value": true
+          }
+        },
+        "options": [
+          {
+            "label": "True",
+            "value": true
+          },
+          {
+            "label": "False",
+            "value": false
+          }
+        ]
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _BOOLEAN_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "boolean"
+        ]
+      }
+    }
+  }
+}

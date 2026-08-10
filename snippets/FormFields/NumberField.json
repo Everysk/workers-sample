@@ -1,0 +1,51 @@
+{
+  "description": "Basic number field.",
+  "body": {
+    "id": "_NUMBER_FIELD_ID_",
+    "name": "_NUMBER_FIELD_NAME_",
+    "placeholder": "_NUMBER_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Number",
+        "value": "number"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "number",
+    "variants": {
+      "number": {
+        "type": "number",
+        "helperText": "Set the _NUMBER_FIELD_NAME_ with a fixed number.",
+        "defaultValues": {
+          "value": ""
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _NUMBER_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "number"
+        ]
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@
 from unittest import TestCase
 from unittest.mock import patch, mock_open, MagicMock
 
-from scripts.delete import get_template_id, http_request
+from scripts.delete import get_template_id, http_request, main
 
 ###############################################################################
 #  Delete Test Case Implementation
@@ -65,6 +65,52 @@ class DeleteTestCase(TestCase):
         with patch('builtins.print') as mocked_print:
             http_request('12345_worker_template')
             mocked_print.assert_called_with(expected_output)
+
+    ###############################################################################
+    #  Main Function Test Case Implementation
+    ###############################################################################
+    def test_main_exits_when_wrong_number_of_args(self):
+        with patch('sys.argv', ['script.py']):
+            with self.assertRaises(SystemExit) as ctx:
+                main()
+        self.assertEqual(ctx.exception.code, 1)
+
+    def test_main_with_single_id_calls_http_request(self):
+        with patch('sys.argv', ['script.py', 'wrkt_12345']), \
+             patch('scripts.delete.http_request') as mock_http:
+            main()
+        mock_http.assert_called_once_with('wrkt_12345')
+
+    @patch('requests.get')
+    def test_main_with_all_calls_http_request_for_missing_ids(self, mock_get):
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            'worker_templates': [{'id': 'wrkt_111'}, {'id': 'wrkt_222'}]
+        }
+        mock_get.return_value = mock_response
+
+        with patch('sys.argv', ['script.py', 'all']), \
+             patch('scripts.delete.get_folder_names', return_value=['wk_foo']), \
+             patch('scripts.delete.get_template_id', return_value='wrkt_111'), \
+             patch('os.path.join', return_value='workers/wk_foo'), \
+             patch('scripts.delete.http_request') as mock_http:
+            main()
+
+        mock_http.assert_called_once_with('wrkt_222')
+
+    @patch('requests.get')
+    def test_main_with_all_api_error_exits(self, mock_get):
+        mock_response = MagicMock()
+        mock_response.status_code = 500
+        mock_get.return_value = mock_response
+
+        with patch('sys.argv', ['script.py', 'all']), \
+             patch('builtins.print'), \
+             self.assertRaises(SystemExit) as ctx:
+            main()
+
+        self.assertEqual(ctx.exception.code, 1)
 
     @patch('requests.delete')
     def test_delete_http_request_method_when_status_code_is_different_than_200(self, mock_delete):

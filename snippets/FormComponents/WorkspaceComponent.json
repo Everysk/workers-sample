@@ -1,0 +1,57 @@
+{
+  "body": {
+    "id": "workspace",
+    "name": "Workspace",
+    "permission": "workflows.save_source_code",
+    "placeholder": "Using current workspace",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": false,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Fixed Workspace",
+        "value": "selectWorkspace"
+      },
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "selectWorkspace",
+    "variants": {
+      "selectWorkspace": {
+        "type": "selectRemoteData",
+        "resultVariable": "workspaces",
+        "url": "workspaces",
+        "link": "workspaces",
+        "helperText": "Select an existing workspace.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        }
+      },
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the workspace from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "string"
+        ]
+      }
+    }
+  }
+}

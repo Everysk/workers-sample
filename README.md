@@ -1,10 +1,12 @@
 # Development Guide for Everysk Workers
 
-In Everysk, **workers** are like building blocks, which when combined together, can craft powerful workflow solutions. Workers are designed to **create** unique solutions based on the needs of each user.
+In Everysk, **workers** are like building blocks that, when combined together, can craft powerful workflow solutions. Workers are designed to **create** unique solutions based on the needs of each user. The repository currently contains workers organized across multiple categories including **AI**, **Connectors**, **Database**, **Datastore**, **File**, **Flow Control**, **Portfolio**, **Private Security**, **Custom Index**, and more.
 
 Users are able to **create** their own workers, to define precise behaviors, integrate with various systems, and address specific requirements efficiently. This approach ensures that workers are not just generic tools but are purpose-built to fit seamlessly into diverse workflows, maximizing productivity and innovation.
 
 Aside from the **customization**, user-deployed workers have the added benefits of version control through [GitHub](https://github.com/), shareable across different users, and easily available when constructing new workflows. User-deployed workers are also **private** so they are not shared with other clients, and the code is not visible in the UI. The document below explains how a user could develop, test, deploy and manage their own worker in the `Everysk` worker library.
+
+<br>
 
 ## Requirements
 
@@ -126,7 +128,7 @@ For a seamless development experience using **Dev Containers**:
 
 ## Check Building Process
 
-Once you receive a successful deployment message, log in to your Everysk account. Navigate to the Workers Library, where you will see the building process, this process will take a few minutes to complete.
+Once you receive a successful deployment message, log in to your [Everysk account](https://app.everysk.com/). Navigate to the **Workers Library**, where you will see the building process. This process will take a few minutes to complete while the platform builds and packages your worker.
 
 
 ![alt text](image.png)
@@ -144,18 +146,29 @@ After following these steps, you are now ready to start developing your worker!
 
 Let's imagine a hypothetical scenario where we wish to create a worker that will receive a **Datastore**, calculate some data using the [Black-Scholes Model](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model) and output the modified Datastore.
 
+<br>
 
 ## Structuring the Code and Files
 
-To create the necessary structure for our worker, if you are using **Visual Studio Code**, we have at our disposal the **Create Folder Structure** Task.
+There are three ways to create the folder structure for a new worker. Choose whichever method suits you best:
 
-To use it, open the command palette by pressing `Ctrl + Shift + P` and type `Tasks: Run Task` and select the `Create Folder Structure` option. Then write the name of the worker on the pop up that will appear on the top middle of your screen: `black_scholes_model`.
+### Option 1: Using the CLI scaffold command (Recommended)
 
-By default, the convention name of the folders for the workers will be: `wk_<worker_name>`. You may choose to remove the prefix `wk_` from the folder name if you wish, this is just a convention.
+The fastest way is to use the built-in scaffold command. This will automatically create the full directory structure with all the necessary files and boilerplate:
 
-<br>
+```bash
+python run.py create black_scholes_model
+```
 
-Alternatively, to start creating our **worker** we must first create a directory with the name of our worker. In this case, we shall name it `wk_black_scholes_model`. Keep in mind that we are using **Linux** for this segment, feel free to follow along with your operating system:
+This creates `workers/wk_black_scholes_model/` with the complete structure ready to go.
+
+### Option 2: Using VS Code Tasks
+
+If you are using **Visual Studio Code**, you can use the **Create Folder Structure** Task. Open the command palette by pressing `Ctrl + Shift + P` and type `Tasks: Run Task`, then select the `Create Folder Structure` option. Write the name of the worker on the pop-up that will appear on the top middle of your screen: `black_scholes_model`.
+
+### Option 3: Manual creation
+
+You can also create the structure manually. In this case, we shall name it `wk_black_scholes_model`. Keep in mind that we are using **Linux** for this segment, feel free to follow along with your operating system:
 
 ```bash
 mkdir wk_black_scholes_model
@@ -168,26 +181,28 @@ mkdir -p wk_black_scholes_model/config
 mkdir -p wk_black_scholes_model/tests
 ```
 
+By default, the naming convention for worker folders is: `wk_<worker_name>`. You may choose to remove the prefix `wk_` from the folder name if you wish, this is just a convention.
+
 <br>
 
 ## Understanding the directories
 
 Below we have the directory structure which we will use as a starting point in order to create our **workers**:
 
-```bash
-wk_black_scholes_model
-├── config
-│   ├── config.json
-│   ├── form_functions.py
-│   ├── form_inputs.json
-│   ├── form_outputs.json
-│   ├── sample_args.json
-│   └── icon.svg
-└── tests
-    └── main.py
-├── main.py
-├── README.md
-└── requirements.txt
+```
+wk_black_scholes_model/
+├── config/
+│   ├── config.json          # Worker metadata (id, name, category, ports, etc.)
+│   ├── form_functions.py    # Python functions for dynamic form behavior
+│   ├── form_inputs.json     # UI form definition for worker inputs
+│   ├── form_outputs.json    # UI form definition for worker outputs
+│   ├── sample_args.json     # Sample arguments for local debugging
+│   └── icon.svg             # Optional: custom icon for the platform (max 5KB SVG)
+└── tests/
+│   └── main.py              # Unit tests for the worker
+├── main.py                  # Worker class + main() entry point
+├── README.md                # Brief description shown on the platform
+└── requirements.txt         # Worker-specific Python dependencies
 ```
 
 Let's understand how each directory and file behave inside the structure.
@@ -208,7 +223,7 @@ flowchart TB
 
 <br>
 
-Below we the three main files which will be located in the root directory of our worker:
+Below are the three main files which will be located in the root directory of our worker:
 
 
 ### main.py
@@ -299,6 +314,16 @@ As an important reminder, the number of **test files** will be equivalent to the
 <br>
 
 ## Writing the Logic
+
+Every worker extends `WorkerBase` and follows a three-phase lifecycle:
+
+1. **`handle_inputs()`** — Read and parse the incoming arguments from `self.script_inputs`. This is where you extract user-provided data, validate formats, and prepare internal state. This method is optional — if omitted, `self.script_inputs` is directly accessible in `handle_tasks`.
+
+2. **`handle_tasks()`** — Perform the core business logic. This is where the actual work happens: calculations, API calls, data transformations, etc.
+
+3. **`handle_outputs()`** — Return the final result as a dictionary. This dictionary is what downstream workers in the workflow will receive.
+
+The `main()` function at the bottom is the required entry point. It receives a `BaseDict` of arguments, creates an instance of your worker, and calls `.run()` which triggers the three lifecycle methods in order.
 
 Inside the `main.py` file we can start writing the code for our **worker**:
 
@@ -487,15 +512,18 @@ Inside this newly created python file you are now able to add all the repeated c
 Lets move our `black_scholes_merton` function to the `base.py` file:
 
 ```python
-
+import numpy as np
+import pandas as pd
 from scipy.stats import norm
 from everysk.sdk.worker_base import WorkerBase
 
-class BlackScholsBase(WorkerBase):
+class BlackScholesBase(WorkerBase):
     """
-    Base class for the Black Scholes Model. This class contains the shared methods that can be used across multiple workers.
+    Base class for the Black-Scholes Model. This class contains the shared
+    methods that can be used across multiple workers.
     """
     def black_scholes_merton(
+        self,
         op_type: pd.Series,
         K: pd.Series,
         T: pd.Series,
@@ -504,56 +532,72 @@ class BlackScholsBase(WorkerBase):
         r: pd.Series,
         sigma: pd.Series
     ):
-    """
-    Vectorized Black-Scholes-Merton option pricing formula.
+        """
+        Vectorized Black-Scholes-Merton option pricing formula.
 
-    Args:
-        op_type (pd.Series): Series of 'C' or 'P' indicating call or put options.
-        K (pd.Series): Strike prices.
-        T (pd.Series): Times to maturity.
-        S (pd.Series): Current stock prices.
-        q (pd.Series): Dividend yields.
-        r (pd.Series): Annualized risk-free interest rates.
-        sigma (pd.Series): Annualized volatilities.
+        Args:
+            op_type (pd.Series): Series of 'C' or 'P' indicating call or put options.
+            K (pd.Series): Strike prices.
+            T (pd.Series): Times to maturity.
+            S (pd.Series): Current stock prices.
+            q (pd.Series): Dividend yields.
+            r (pd.Series): Annualized risk-free interest rates.
+            sigma (pd.Series): Annualized volatilities.
 
-    Returns:
-        (np.ndarray, np.ndarray, np.ndarray): d1, d2, and option prices for each row.
-    """
-    r_log = np.log(1 + r)
+        Returns:
+            (np.ndarray, np.ndarray, np.ndarray): d1, d2, and option prices for each row.
+        """
+        r_log = np.log(1 + r)
 
-    alpha = np.where(op_type.str.upper() == 'C', 1, -1)
+        alpha = np.where(op_type.str.upper() == 'C', 1, -1)
 
-    # Compute d1, d2
-    d1 = (np.log(S / K) + (r_log - q + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
-    d2 = d1 - sigma * np.sqrt(T)
+        # Compute d1, d2
+        d1 = (np.log(S / K) + (r_log - q + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
+        d2 = d1 - sigma * np.sqrt(T)
 
-    # Price formula
-    price = alpha * (
-        S * np.exp(-q * T) * norm.cdf(alpha * d1)
-        - K * np.exp(-r_log * T) * norm.cdf(alpha * d2)
-    )
+        # Price formula
+        price = alpha * (
+            S * np.exp(-q * T) * norm.cdf(alpha * d1)
+            - K * np.exp(-r_log * T) * norm.cdf(alpha * d2)
+        )
 
-    return d1, d2, price
+        return d1, d2, price
 ```
 
 <br>
 
-Then, back in your **worker** directory, you can import the new class and modify the `BlackScholsModel` class to inherit from the `Base` class, giving us access to the methods without having to rewrite them every time
+Then, back in your **worker** directory, you can import the new class and modify the `BlackScholesModel` class to inherit from the `Base` class, giving us access to the methods without having to rewrite them every time:
 
 ```python
-from libs.base import BlackScholsBase
+from libs.base import BlackScholesBase
 
-class BlackScholsModel(BlackScholsBase):
+class BlackScholesModel(BlackScholesBase):
     ...
 ```
 
-Now you can use the `black_scholes_merton` method in the `BlackScholsModel` class without having to rewrite it.
+Now you can use the `black_scholes_merton` method in the `BlackScholesModel` class without having to rewrite it.
 
 <br>
 
 ## Worker Configuration
 
-Inside the `config.json` file, insert the following information which will be used to **configure** the worker by giving it a unique identifier and also set a few configuration details that will be shown in the **interface**:
+Inside the `config.json` file, insert the following information which will be used to **configure** the worker by giving it a unique identifier and also set a few configuration details that will be shown in the **interface**.
+
+Here is a quick reference for the most important fields:
+
+| Field | Description |
+|---|---|
+| `id` | Leave empty (`""`) — it will be automatically filled after the first deploy |
+| `name` | The display name shown in the platform UI |
+| `description` | A short description of what the worker does |
+| `category` | The category under which the worker appears (e.g., `Calculator`, `data`, `ai`, `miscellaneous`) |
+| `type` | The worker type — use `BASIC` for standard workers |
+| `default_output` | The key used to reference this worker's output in downstream workers |
+| `ports` | Defines the input/output connection ports visible in the workflow editor |
+| `visible` | Whether the worker appears in the platform's worker library (`true` or `false`) |
+| `created` / `updated` | Timestamps managed by the platform — leave as `null` |
+
+Example:
 
 ```json
 {
@@ -602,7 +646,7 @@ def storage_mode_create(form_data, *args):
     storage_mode = storage_settings.get('storage_mode', {})
     select = storage_mode.get('select', {})
     value = select.get('value', {})
-    return value.lower() == 'create'
+    return value == 'create'
 
 def storage_mode_update(form_data, *args):
     black_schols_model_input = form_data.get('black_schols_model_input', {})
@@ -610,7 +654,7 @@ def storage_mode_update(form_data, *args):
     storage_mode = storage_settings.get('storage_mode', {})
     select = storage_mode.get('select',{})
     value = select.get('value', {})
-    return value.lower() == 'transient'
+    return value == 'transient'
 ```
 
 <br>
@@ -1090,7 +1134,7 @@ In the `form_inputs.json` file, we will define an **input field** that the user 
 ]
 ```
 
-In the example above, we defined **two fields** that will be used to get the information about which **number** will receive the message, and what the **message** will be.
+In the example above, we defined an **input assembler** with two main sections: the **Datastore input** (where the user configures the datastore name, workspace, date, link UID, tags, and data) and the **Storage Settings** (where the user chooses between creating a new datastore or using a transient one). These fields will appear as a form in the platform UI when a user configures the worker.
 
 <br>
 
@@ -1100,7 +1144,7 @@ In the `form_outputs.json` file, we can define the type of output that the worke
 {
     "SINGLE": [
         {
-            "value": "black_scholes_model",
+            "value": "datastore",
             "label": "Black Scholes Model",
             "type": "datastore",
             "list_item_type": "",
@@ -1228,28 +1272,28 @@ Above we have a test case that ensures the `generate_datastore` method is workin
 
 <br>
 
-After writing your tests you need first to import them inside the `scripts` in the file called `tests.py`:
+After writing your tests, you need to register them so the test runner can find them. Open the file `scripts/tests.py` and add an import for your test class:
 
 ```python
-from workers.wk_black_scholes_model.tests.main import TestBlackScholsModel
+from workers.wk_black_scholes_model.tests.main import TestBlackScholesModel
 ```
 
-Now, to run the tests, type the following **command** in the terminal:
+This ensures that when you run the test suite, your new tests are included. Now, to run the tests, type the following **command** in the terminal:
 
 ```bash
-./run.sh tests
+python run.py tests
 ```
 
 As a quick reminder, the command above will run **all** the tests from every directory. But you can also be more **specific** and only run the tests for our newly created worker:
 
 ```bash
-./run.sh tests workers.wk_black_scholes_model.tests.main.TestBlackScholsModel
+python run.py tests workers.wk_black_scholes_model.tests.main.TestBlackScholesModel
 ```
 
 When working with tests, it is also important to check the **coverage** of the tests, in other words, the percentage of the code that was called during test stage. To do so, run the following command:
 
 ```bash
-./run.sh coverage
+python run.py coverage
 ```
 
 If the tests cases were designed in a way that every method was called and correctly tested, the command will output a message similar to the one below in the **terminal**:
@@ -1283,7 +1327,7 @@ EVERYSK_API_TOKEN=<your_api_token>
 Once you have all the files completed you may **deploy** your worker as follows:
 
 ```bash
-./run.sh deploy wk_black_scholes_model
+python run.py deploy wk_black_scholes_model
 ```
 
 You should see a message similar to the one below if everything went as expected:
@@ -1295,8 +1339,13 @@ Black Scholes Model config.json updated successfully.
 
 Now, when you look inside the `config.json` file you should be able to see that the fields **id**, **created**, and **updated** changed to reflect the worker deployment.
 
-Noticed that once you run commnad to deploy the worker, it will take a couple of minutes to be deployed, you will be able to verify the status of the worker in the plarform.
+Note that once you run the command to deploy the worker, it will take a couple of minutes to be fully deployed. You will be able to verify the status of the worker in the [platform](https://app.everysk.com/).
 
+Under the hood, the deploy process (`scripts/deploy.py`) does the following:
+1. Parses `config.json`, `form_inputs.json`, `form_outputs.json`, `form_functions.py`, and `README.md`
+2. Zips the worker source code together with `workers/libs/` (excluding `tests/` directories)
+3. Sends a **POST** request (for new workers) or a **PUT** request (for existing workers) to `https://api.everysk.com/v2/worker_templates`
+4. For new workers, writes back the `id`, `created`, and `updated` fields into your `config.json`
 
 Now if you open up the [platform](https://app.everysk.com/) you can see the recently created **worker** loading in the **interface**.
 
@@ -1304,25 +1353,25 @@ Now if you open up the [platform](https://app.everysk.com/) you can see the rece
 
 ## Debugging the Worker
 
-Whenever you encounter errors in your worker creation you have the option of **debugging** them. For that you have at your disposal the `sample_args.json` file, which will contain all the information used for running the worker.
+Whenever you encounter errors in your worker, you have the option of **debugging** them locally. The idea is to capture the real arguments that the platform passes to your worker, save them to a `sample_args.json` file, and then re-run the worker locally with a debugger attached.
 
-For extracting the correct data to insert into the `sample_args.json` file you can open the recently deployed worker inside the [platform](https://app.everysk.com/) and click on the `<>` symbol in the top right corner. In the **source code** tab you will find a code similar to this one below:
+**Step 1:** Extract the real arguments from the platform. Open the recently deployed worker inside the [platform](https://app.everysk.com/) and click on the `<>` symbol in the top right corner. In the **source code** tab you will find a code similar to this one below:
 
 ```python
 def main(args):
     return worker_run(template_id='wrkt_usrAf1uLwUdsynFwgcaOJOdRCL')(args)
 ```
 
-Replace the `main` function to return the **args** input instead and click `RUN`:
+**Step 2:** Replace the `main` function to return the **args** input instead, and click `RUN`:
 
 ```python
 def main(args):
     return args
 ```
 
-After the **worker** execution is finished you should be able to see a new **dictionary** generated that contains the information which was used in order to run the worker. Copy everything and paste the dictionary into our previously created `test` key inside the `sample_args.json` file and save it.
+**Step 3:** After the **worker** execution is finished, you should see a **dictionary** containing all the arguments that were passed to your worker. Copy everything and paste the dictionary into the `test` key inside the `sample_args.json` file and save it.
 
-You should have something similar to this below:
+You should have something similar to this:
 
 ```json
 {
@@ -1334,20 +1383,20 @@ You should have something similar to this below:
 }
 ```
 
-After having all that ready, you can insert a `breakpoint()` statement in your code and run the following command:
+**Step 4:** Now you can insert a `breakpoint()` statement anywhere in your worker code where you want to pause execution and inspect variables. Then run the following command to start the debugger:
 
 ```bash
-./run.sh debug wk_black_scholes_model sample_args_key
+python run.py debug wk_black_scholes_model sample_args_key
 ```
 
 <br>
 
 ## Deleting the Worker
 
-In the case you wish to delete your worker you will need the worker ID that is located inside the `config.json` file. After retrieving the ID you may run the following command in the terminal:
+If you wish to delete a deployed worker from the platform, you will need the **worker ID** which can be found in the `id` field inside the worker's `config.json` file. After retrieving the ID, run the following command in the terminal:
 
 ```bash
-./run.sh delete wrkt_usr5ng8hhL2LaJGNa2f0FXJHj
+python run.py delete wrkt_usr5ng8hhL2LaJGNa2f0FXJHj
 ```
 
 You should see the following message on the terminal:
@@ -1376,7 +1425,7 @@ git push origin black-scholes-worker
 
 **Note**: Since Git CLI does not allow the creation of Pull Requests, You can use your Version Control System to create a pull request, review, approve and merge into your base branch.
 
-To directly merge in your base branch, you can follow the command bellow:
+To directly merge in your base branch, you can follow the commands below:
 
 ```bash
 # Switch to the base branch
@@ -1398,9 +1447,15 @@ git push origin <base-branch>
 
 ### Snippets
 
-Snippets are pre-defined templates that make it easier to write repeating code. They are a **VS code feature** and can be quite useful when it comes to creating fields inside the `form_inputs.json` file.
+Snippets are pre-defined templates that make it easier to write repeating code. They are a **VS Code feature** and can be quite useful when it comes to creating fields inside the `form_inputs.json` file. Instead of writing the full JSON structure for each form field by hand, you can use snippets to quickly generate the boilerplate.
 
-Once you take a look inside the `snippets`, you should see two main directories `FormComponents` and `FormFields`, which will be used to create the **fields** and **components** for the forms.
+If new snippets have been added to the repository, you can regenerate the VS Code snippet definitions by running:
+
+```bash
+python run.py snippets
+```
+
+Once you take a look inside the `snippets` directory, you should see two main directories `FormComponents` and `FormFields`, which will be used to create the **fields** and **components** for the forms.
 
 ```bash
 snippets
@@ -1487,4 +1542,30 @@ Below we have an example of what the `StringField` will look like:
 ]
 ```
 
-As seen in the example above, the `StringField` will have all the fields necessary to correctly configure the form in the interface.
+As seen in the example above, the `StringField` will have all the fields necessary to correctly configure the form in the interface. The placeholders (like `_STRING_FIELD_ID_` and `_STRING_FIELD_NAME_`) will be highlighted so you can quickly tab through and replace them with your actual values.
+
+---
+
+## CLI Commands Reference
+
+Here is a complete reference of all available commands through `run.py`:
+
+| Command | Description |
+|---|---|
+| `python run.py create <worker_name>` | Scaffold a new worker with the full directory structure |
+| `python run.py deploy wk_<name>` | Deploy a single worker to the Everysk platform |
+| `python run.py deploy all` | Deploy all workers |
+| `python run.py delete wk_<name>` | Delete a deployed worker from the platform |
+| `python run.py tests` | Run all tests across all workers |
+| `python run.py tests <module.path>` | Run a specific test module or test class |
+| `python run.py coverage` | Run all tests and generate a code coverage report |
+| `python run.py debug wk_<name> <key>` | Debug a worker locally using sample args from `sample_args.json` |
+| `python run.py venv` | Create a Python virtual environment |
+| `python run.py snippets` | Regenerate VS Code snippets from the `snippets/` folder |
+| `python run.py shell` | Open an interactive IPython shell with the project loaded |
+
+---
+
+## Platform Compatibility
+
+This setup supports **Windows, Linux, and macOS**, so you can develop on any operating system.

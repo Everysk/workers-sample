@@ -1,0 +1,15 @@
+# .coveragerc to control coverage.py
+[run]
+data_file = /tmp/coverage
+source =
+    /var/app/workers
+    /var/app/scripts
+omit =
+
+[report]
+# https://coverage.readthedocs.io/en/latest/excluding.html#advanced-exclusion
+exclude_lines =
+    if TYPE_CHECKING:
+
+show_missing = True
+skip_empty = True

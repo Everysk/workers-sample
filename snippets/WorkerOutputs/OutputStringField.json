@@ -1,0 +1,7 @@
+{
+  "body": {
+    "label": "_STRING_FIELD_LABEL_",
+    "value": "_STRING_FIELD_VALUE_",
+    "type": "string"
+  }
+}

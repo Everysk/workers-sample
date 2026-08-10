@@ -1,0 +1,47 @@
+{
+  "body": {
+    "id": "_LIST_FIELD_ID_",
+    "name": "_LIST_FIELD_NAME_",
+    "placeholder": "_LIST_FIELD_PLACEHOLDER_",
+    "tipover": "",
+    "paddingLeft": 0,
+    "paddingRight": 0,
+    "paddingTop": 0,
+    "paddingBottom": 0,
+    "gridSizeMd": 12,
+    "mandatory": true,
+    "displayName": true,
+    "withoutMessages": false,
+    "variantOptions": [
+      {
+        "label": "Upstream Data",
+        "value": "previousWorkers"
+      }
+    ],
+    "defaultVariant": "previousWorkers",
+    "variants": {
+      "previousWorkers": {
+        "type": "nestedAttributes",
+        "helperText": "Select the _LIST_FIELD_NAME_ from a previous worker.",
+        "defaultValues": {
+          "select": {
+            "label": "",
+            "value": ""
+          }
+        },
+        "options": [],
+        "filterType": [
+          "list"
+        ],
+        "listFilterType": [
+          "string",
+          "number",
+          "date",
+          "boolean",
+          "list",
+          "object"
+        ]
+      }
+    }
+  }
+}

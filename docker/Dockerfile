@@ -1,5 +1,7 @@
 ############ Base image ############
-FROM everyskpackages/everysk_worker_development:latest AS everysk_worker_base
+FROM python:3.12.13-slim AS everysk_worker_base
+
+ENV PROJECT_ROOT=/var/app
 
 WORKDIR ${PROJECT_ROOT}
 
@@ -11,8 +13,8 @@ FROM everysk_worker_base AS everysk_worker_remote
 
 COPY . ${PROJECT_ROOT}
 
-ENTRYPOINT [ "/bin/bash", "--login", "-c", "${PROJECT_ROOT}/run.sh deploy all" ]
+ENTRYPOINT [ "/bin/bash", "--login", "-c", "python ${PROJECT_ROOT}/run.py deploy all" ]
 
 FROM everysk_worker_base AS everysk_worker_tests
 
-ENTRYPOINT [ "/bin/bash", "--login", "-c", "${PROJECT_ROOT}/run.sh tests" ]
+ENTRYPOINT [ "/bin/bash", "--login", "-c", "python ${PROJECT_ROOT}/run.py tests" ]
