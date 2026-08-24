@@ -20,6 +20,29 @@
 			}
 		}
 	},
+	// Script that prepares the commit signing key mount sources on the host.
+	"initializeCommand": "${localWorkspaceFolder}/.devcontainer/setup.sh",
+	// Wait for the host-side setup before the container is built.
+	"waitFor": "initializeCommand",
+
+	// Commit signing key, mounted file by file so the remaining keys in ~/.ssh stay on the host.
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh/git-signing,target=/root/.ssh/git-signing,type=bind,consistency=cached",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh/git-signing.pub,target=/root/.ssh/git-signing.pub,type=bind,consistency=cached"
+	],
+
+	// Turn on commit signing, guarded on a non-empty public key.
+	//
+	// This must stay in "postStartCommand". VS Code copies the host ~/.gitconfig
+	// (your user.name/user.email) into the container only when /root/.gitconfig
+	// holds no configuration yet, and it makes that check *after* onCreateCommand
+	// and postCreateCommand. Writing the signing config in either of those hooks
+	// makes VS Code skip the copy, and the container ends up with no git identity.
+	// The container also runs with --rm, so the config is written again on each start.
+	"postStartCommand": {
+		"commitSigning": "if [ -s /root/.ssh/git-signing.pub ]; then git config --global gpg.format ssh && git config --global user.signingkey /root/.ssh/git-signing.pub && git config --global commit.gpgsign true; else echo '⚠️  No commit signing key. Commits stay unsigned and protected branches reject them.'; fi"
+	},
+
 	"workspaceMount": "source=${localWorkspaceFolder},target=/var/app,type=bind,consistency=cached",
 	"workspaceFolder": "/var/app",
 
